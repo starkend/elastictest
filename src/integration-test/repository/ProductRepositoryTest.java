@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.UUID;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
@@ -24,17 +26,18 @@ public class ProductRepositoryTest {
     public void whenTestInsertProductIntoMongodb_thenSucceed() {
         Product product = new Product();
         product.setId(UUID.randomUUID().toString());
-        product.setBrandName("Test Brand 2");
-        product.setName("Test Name 2");
+        product.setBrandName("Test Brand");
+        product.setName("Blah Name");
         product.setGtin14(1000L);
 
-        Product saveProduct = productRepository.insertProduct(product);
+        //Product saveProduct = productRepository.insertProduct(product);
 
-//        Product findProduct = productRepository.findByName(product.getName());
+        List<Product> findProducts = productRepository.findByName(product.getName());
 
-        assertNotNull(saveProduct);
+        assertNotNull(findProducts);
+        assertFalse(findProducts.isEmpty());
 
-        //productRepository.delete(findProduct);
+        //productRepository.delete(findProducts);
 
     }
 
