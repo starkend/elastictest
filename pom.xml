@@ -25,7 +25,7 @@
 <!--        </dependency>-->
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
-            <artifactId>elasticsearch-rest-client</artifactId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
             <version>7.3.2</version>
         </dependency>
 
