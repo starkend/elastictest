@@ -23,21 +23,21 @@ public class ProductRepositoryTest {
     ProductRepository productRepository;
 
     @Test
-    public void whenTestInsertProductIntoMongodb_thenSucceed() {
+    public void whenTestInsertProductIntoElasticsearch_thenSucceed() {
         Product product = new Product();
         product.setId(UUID.randomUUID().toString());
         product.setBrandName("Test Brand");
-        product.setName("Blah Name");
+        product.setName("Name 2");
         product.setGtin14(1000L);
 
-        //Product saveProduct = productRepository.insertProduct(product);
+        Product saveProduct = productRepository.insertProduct(product);
+
+        assertNotNull(saveProduct);
 
         List<Product> findProducts = productRepository.findByName(product.getName());
 
         assertNotNull(findProducts);
         assertFalse(findProducts.isEmpty());
-
-        //productRepository.delete(findProducts);
 
     }
 
