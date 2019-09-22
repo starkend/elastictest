@@ -27,7 +27,7 @@ public class ProductRepositoryTest {
         Product product = new Product();
         product.setId(UUID.randomUUID().toString());
         product.setBrandName("Test Brand");
-        product.setName("Name 2");
+        product.setName("Bug");
         product.setGtin14(1000L);
 
         Product saveProduct = productRepository.insertProduct(product);
@@ -38,7 +38,6 @@ public class ProductRepositoryTest {
 
         assertNotNull(findProducts);
         assertFalse(findProducts.isEmpty());
-
     }
 
 }
