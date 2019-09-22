@@ -63,7 +63,7 @@ public class ProductRepository {
         SearchRequest searchRequest = new SearchRequest(INDEX);
         QueryBuilder matchQueryBuilder = QueryBuilders.matchQuery(PRODUCT_NAME_FIELD, name);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        searchSourceBuilder.query(searchSourceBuilder.query());
+        searchSourceBuilder.query(matchQueryBuilder);
 
         searchRequest.source(searchSourceBuilder);
 
