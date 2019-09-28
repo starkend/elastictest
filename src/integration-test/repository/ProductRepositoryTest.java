@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.validation.constraints.AssertTrue;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,13 +27,13 @@ public class ProductRepositoryTest {
     public void whenInsertProduct_thenSucceed() {
         Product product = new Product();
         product.setId(UUID.randomUUID().toString());
-        product.setBrandName("Test Brand");
+        product.setBrandName("Test Brand Name");
         product.setName("Test Name");
         product.setGtin14(1000L);
 
-//        Product saveProduct = productRepository.insertProduct(product);
-//
-//        assertNotNull(saveProduct);
+        Product saveProduct = productRepository.insertProduct(product);
+
+        assertNotNull(saveProduct);
 
         List<Product> findProducts = productRepository.findByName(product.getName());
 
