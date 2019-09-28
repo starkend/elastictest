@@ -61,4 +61,15 @@ public class ProductRepositoryTest {
         assertTrue(didDeleteSucceed);
     }
 
+    @Test
+    public void whenFindByName_thenSucceed() {
+        String name = "Name";
+
+        List<Product> productList = productRepository.findByName(name);
+
+        assertNotNull(productList);
+        assertFalse(productList.isEmpty());
+
+        productList.forEach(p -> System.out.println(p.getName()));
+    }
 }
