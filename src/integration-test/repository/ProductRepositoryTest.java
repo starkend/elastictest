@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.constraints.AssertTrue;
 import java.util.List;
 import java.util.UUID;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
@@ -23,21 +25,40 @@ public class ProductRepositoryTest {
     ProductRepository productRepository;
 
     @Test
-    public void whenTestInsertProductIntoElasticsearch_thenSucceed() {
+    public void whenInsertProduct_thenSucceed() {
         Product product = new Product();
         product.setId(UUID.randomUUID().toString());
         product.setBrandName("Test Brand");
-        product.setName("Bug");
+        product.setName("Test Name");
         product.setGtin14(1000L);
 
-        Product saveProduct = productRepository.insertProduct(product);
-
-        assertNotNull(saveProduct);
+//        Product saveProduct = productRepository.insertProduct(product);
+//
+//        assertNotNull(saveProduct);
 
         List<Product> findProducts = productRepository.findByName(product.getName());
 
+        findProducts.forEach(System.out::println);
+
         assertNotNull(findProducts);
         assertFalse(findProducts.isEmpty());
+    }
+
+    @Test
+    public void whenInsertAndDeleteProduct_thenSucceed() {
+        Product product = new Product();
+        product.setId(UUID.randomUUID().toString());
+        product.setBrandName("Delete Brand Name");
+        product.setName("Delete Name");
+        product.setGtin14(100L);
+
+        Product saveProduct = productRepository.insertProduct(product);
+
+        assertNotNull(product);
+
+        boolean didDeleteSucceed = productRepository.deleteById(product.getId());
+
+        assertTrue(didDeleteSucceed);
     }
 
 }

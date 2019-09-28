@@ -3,6 +3,9 @@ package com.starkend.elastictest.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.starkend.elastictest.model.Product;
 import org.elasticsearch.ElasticsearchException;
+import org.elasticsearch.action.DocWriteResponse;
+import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
@@ -11,6 +14,7 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
@@ -85,10 +89,27 @@ public class ProductRepository {
                 Product product = objectMapper.readValue(source, Product.class);
                 productList.add(product);
             } catch (IOException e) {
-                e.printStackTrace();
+                LOG.error(e.getLocalizedMessage());
             }
         });
 
         return productList;
+    }
+
+    public boolean deleteById(String id) {
+        DeleteRequest deleteRequest = new DeleteRequest(INDEX, id);
+
+        DeleteResponse deleteResponse = null;
+        try {
+            deleteResponse = restHighLevelClient.delete(deleteRequest, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            LOG.error(e.getLocalizedMessage());
+        }
+
+        if (deleteResponse.getResult().equals(DocWriteResponse.Result.DELETED)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
