@@ -36,7 +36,6 @@ public class ProductRepository {
 
     private final String INDEX = "productindex";
     private final String TYPE = "products";
-    private final String PRODUCT_NAME_FIELD = "name";
 
     private ObjectMapper objectMapper;
     private RestHighLevelClient restHighLevelClient;
@@ -66,6 +65,7 @@ public class ProductRepository {
 
     public List<Product> findByName(String name) {
         SearchRequest searchRequest = new SearchRequest(INDEX);
+        final String PRODUCT_NAME_FIELD = "name";
         QueryBuilder matchQueryBuilder = QueryBuilders.matchQuery(PRODUCT_NAME_FIELD, name);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         searchSourceBuilder.query(matchQueryBuilder);
