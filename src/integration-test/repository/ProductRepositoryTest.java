@@ -24,18 +24,12 @@ public class ProductRepositoryTest {
 
     @Test
     public void whenInsertProduct_thenSucceed() {
-        Product product = new Product();
-        product.setId(UUID.randomUUID().toString());
-        product.setBrandName("Test Brand Name");
-        product.setName("Test Name");
-        product.setGtin14(1000L);
+        Product product = createProduct("Test Brand Name", "Test Name", 1000L);
 
         Product saveProduct = productRepository.insertProduct(product);
-
         assertNotNull(saveProduct);
 
         List<Product> findProducts = productRepository.findByName(product.getName());
-
         findProducts.forEach(System.out::println);
 
         assertNotNull(findProducts);
@@ -44,18 +38,12 @@ public class ProductRepositoryTest {
 
     @Test
     public void whenInsertAndDeleteProduct_thenSucceed() {
-        Product product = new Product();
-        product.setId(UUID.randomUUID().toString());
-        product.setBrandName("Delete Brand Name");
-        product.setName("Delete Name");
-        product.setGtin14(100L);
+        Product product = createProduct("Delete Brand Name", "Delete Name", 100L);
 
         Product saveProduct = productRepository.insertProduct(product);
-
         assertNotNull(product);
 
         boolean didDeleteSucceed = productRepository.deleteById(product.getId());
-
         assertTrue(didDeleteSucceed);
     }
 
@@ -73,12 +61,8 @@ public class ProductRepositoryTest {
 
     @Test
     public void whenFindById_thenSucceed() {
-        Product product = new Product();
-        String id = UUID.randomUUID().toString();
-        product.setId(id);
-        product.setBrandName("Test FindById Brand Name");
-        product.setName("Test FindById Name");
-        product.setGtin14(2000L);
+        Product product = createProduct("Test FindById Brand Name", "Test FindById Name", 2000L);
+        String id = product.getId();
 
         Product saveProduct = productRepository.insertProduct(product);
         assertNotNull(product);
@@ -87,5 +71,14 @@ public class ProductRepositoryTest {
 
         assertNotNull(findByIdProduct);
         assertEquals(id, findByIdProduct.getId());
+    }
+
+    private Product createProduct(String brandName, String name, long gtin) {
+        Product product = new Product();
+        product.setId(UUID.randomUUID().toString());
+        product.setBrandName(brandName);
+        product.setName(name);
+        product.setGtin14(gtin);
+        return product;
     }
 }
