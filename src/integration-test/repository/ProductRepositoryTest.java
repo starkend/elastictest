@@ -26,14 +26,18 @@ public class ProductRepositoryTest {
     public void whenInsertProduct_thenSucceed() {
         Product product = createProduct("Test Brand Name", "Test Name", 1000L);
 
+        String id = product.getId();
+
         Product saveProduct = productRepository.insertProduct(product);
         assertNotNull(saveProduct);
 
-        List<Product> findProducts = productRepository.findByName(product.getName());
-        findProducts.forEach(System.out::println);
+        Product findProduct = productRepository.findById(id);
 
-        assertNotNull(findProducts);
-        assertFalse(findProducts.isEmpty());
+        assertNotNull(findProduct);
+        assertEquals(id, findProduct.getId());
+
+        boolean didDeleteSucceed = productRepository.deleteById(product.getId());
+        assertTrue(didDeleteSucceed);
     }
 
     @Test
@@ -71,6 +75,9 @@ public class ProductRepositoryTest {
 
         assertNotNull(findByIdProduct);
         assertEquals(id, findByIdProduct.getId());
+
+        boolean didDeleteSucceed = productRepository.deleteById(id);
+        assertTrue(didDeleteSucceed);
     }
 
     private Product createProduct(String brandName, String name, long gtin) {
