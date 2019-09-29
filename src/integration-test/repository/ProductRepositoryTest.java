@@ -13,8 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ElastictestApplication.class)
@@ -70,5 +69,23 @@ public class ProductRepositoryTest {
         assertFalse(productList.isEmpty());
 
         productList.forEach(p -> System.out.println(p.getName()));
+    }
+
+    @Test
+    public void whenFindById_thenSucceed() {
+        Product product = new Product();
+        String id = UUID.randomUUID().toString();
+        product.setId(id);
+        product.setBrandName("Test FindById Brand Name");
+        product.setName("Test FindById Name");
+        product.setGtin14(2000L);
+
+        Product saveProduct = productRepository.insertProduct(product);
+        assertNotNull(product);
+
+        Product findByIdProduct = productRepository.findById(id);
+
+        assertNotNull(findByIdProduct);
+        assertEquals(id, findByIdProduct.getId());
     }
 }

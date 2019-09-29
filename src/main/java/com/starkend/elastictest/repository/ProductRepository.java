@@ -6,6 +6,8 @@ import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
@@ -110,5 +112,25 @@ public class ProductRepository {
         } else {
             return false;
         }
+    }
+
+    public Product findById(String id) {
+        GetRequest getRequest = new GetRequest(INDEX, id);
+
+        GetResponse getResponse = null;
+        try {
+            getResponse = restHighLevelClient.get(getRequest, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            LOG.error(e.getLocalizedMessage());
+        }
+
+        Product product = null;
+        try {
+            product = objectMapper.readValue(getResponse.getSourceAsString(), Product.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return product;
     }
 }
