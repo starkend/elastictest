@@ -78,21 +78,7 @@ public class ProductRepository {
             LOG.error(e.getLocalizedMessage());
         }
 
-        SearchHits hits = searchResponse.getHits();
-
-        List<Product> productList = new ArrayList<>();
-
-        Arrays.stream(hits.getHits()).forEach(hit -> {
-            String source = hit.getSourceAsString();
-            try {
-                Product product = objectMapper.readValue(source, Product.class);
-                productList.add(product);
-            } catch (IOException e) {
-                LOG.error(e.getLocalizedMessage());
-            }
-        });
-
-        return productList;
+        return processSearchResponse(searchResponse);
     }
 
     public boolean deleteById(String id) {
@@ -146,7 +132,16 @@ public class ProductRepository {
             e.printStackTrace();
         }
 
+        return processSearchResponse(searchResponse);
+
+    }
+
+    private List<Product> processSearchResponse(SearchResponse searchResponse) {
         SearchHits hits = searchResponse.getHits();
+
+        if (hits == null) {
+            return new ArrayList<Product>();
+        }
 
         List<Product> productList = new ArrayList<>();
 
@@ -161,6 +156,5 @@ public class ProductRepository {
         });
 
         return productList;
-
     }
 }
