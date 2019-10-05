@@ -40,7 +40,6 @@ public class ProductRepository {
     private ObjectMapper objectMapper;
     private RestHighLevelClient restHighLevelClient;
 
-    @Autowired
     public ProductRepository(ObjectMapper objectMapper, RestHighLevelClient restHighLevelClient) {
         this.objectMapper = objectMapper;
         this.restHighLevelClient = restHighLevelClient;
