@@ -20,7 +20,6 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -131,5 +130,37 @@ public class ProductRepository {
         }
 
         return product;
+    }
+
+    public List<Product> getAllProducts() {
+        SearchRequest searchRequest = new SearchRequest(INDEX);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+        searchRequest.source(searchSourceBuilder);
+
+        SearchResponse searchResponse = null;
+
+        try {
+            searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        SearchHits hits = searchResponse.getHits();
+
+        List<Product> productList = new ArrayList<>();
+
+        Arrays.stream(hits.getHits()).forEach(hit -> {
+            String source = hit.getSourceAsString();
+            try {
+                Product product = objectMapper.readValue(source, Product.class);
+                productList.add(product);
+            } catch (IOException e) {
+                LOG.error(e.getLocalizedMessage());
+            }
+        });
+
+        return productList;
+
     }
 }

@@ -80,6 +80,14 @@ public class ProductRepositoryTest {
         assertTrue(didDeleteSucceed);
     }
 
+    @Test
+    public void whenGetAllProducts_thenSucceed() {
+        List<Product> productList = productRepository.getAllProducts();
+
+        assertNotNull(productList);
+        assertFalse(productList.isEmpty());
+    }
+
     private Product createProduct(String brandName, String name, long gtin) {
         Product product = new Product();
         product.setId(UUID.randomUUID().toString());
