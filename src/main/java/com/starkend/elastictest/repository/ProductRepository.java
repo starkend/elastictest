@@ -91,11 +91,7 @@ public class ProductRepository {
             LOG.error(e.getLocalizedMessage());
         }
 
-        if (deleteResponse.getResult().equals(DocWriteResponse.Result.DELETED)) {
-            return true;
-        } else {
-            return false;
-        }
+        return deleteResponse.getResult().equals(DocWriteResponse.Result.DELETED);
     }
 
     public Product findById(String id) {
