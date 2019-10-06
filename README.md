@@ -1,6 +1,7 @@
 # elastictest
 
 Elasticsearch proof of concept
+- Using the Rest High Level Client in order to utilize the latest version of Elasticsearch. The Spring Data repo version is behind and incompatible with the latest Elasticsearch version.
 
 # Built with
 - **Spring Boot**
