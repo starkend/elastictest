@@ -28,6 +28,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static org.elasticsearch.action.DocWriteResponse.Result.CREATED;
+import static org.elasticsearch.action.DocWriteResponse.Result.UPDATED;
+
 @Repository
 public class ProductRepository {
 
@@ -62,10 +65,13 @@ public class ProductRepository {
             LOG.error(ioe.getLocalizedMessage());
         }
 
-        if (result == DocWriteResponse.Result.CREATED || result == DocWriteResponse.Result.UPDATED) {
-            return product;
-        } else {
-            return null;
+        switch (result) {
+            case CREATED:
+            case UPDATED:
+                return product;
+            default:
+                LOG.error("Response result type not CREATED or UPDATED as expected");
+                return null;
         }
     }
 
