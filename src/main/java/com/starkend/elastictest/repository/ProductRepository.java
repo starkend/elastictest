@@ -50,15 +50,23 @@ public class ProductRepository {
                 .id(product.getId())
                 .source(attrMap);
 
+        IndexResponse response = null;
+        DocWriteResponse.Result result = null;
+
         try {
-            IndexResponse response = restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
+            response = restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
+            result = response.getResult();
         } catch (ElasticsearchException e) {
             LOG.error(e.getDetailedMessage());
         } catch (IOException ioe) {
             LOG.error(ioe.getLocalizedMessage());
         }
 
-        return product;
+        if (result == DocWriteResponse.Result.CREATED || result == DocWriteResponse.Result.UPDATED) {
+            return product;
+        } else {
+            return null;
+        }
     }
 
     public List<Product> findByName(String name) {
@@ -69,7 +77,6 @@ public class ProductRepository {
         searchSourceBuilder.query(matchQueryBuilder);
 
         searchRequest.source(searchSourceBuilder);
-
 
         SearchResponse searchResponse = null;
         try {
