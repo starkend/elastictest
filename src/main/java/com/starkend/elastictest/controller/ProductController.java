@@ -38,4 +38,12 @@ public class ProductController {
         LOG.info(productList.toString());
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
+
+    @GetMapping("/findProductById")
+    public ResponseEntity<Product> getProductById(@RequestParam String id) {
+        Product product = productRepository.findById(id);
+
+        LOG.info(product.getName());
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
 }
