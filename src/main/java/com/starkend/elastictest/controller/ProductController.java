@@ -1,7 +1,7 @@
 package com.starkend.elastictest.controller;
 
 import com.starkend.elastictest.model.Product;
-import com.starkend.elastictest.repository.ProductRepository;
+import com.starkend.elastictest.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,15 +17,15 @@ public class ProductController {
 
     private static Logger LOG = LoggerFactory.getLogger(ProductController.class);
 
-    ProductRepository productRepository;
+    private ProductService productService;
 
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> productList = productRepository.getAllProducts();
+        List<Product> productList = productService.getAllProducts();
 
         LOG.info(productList.toString());
         return new ResponseEntity<>(productList, HttpStatus.OK);
@@ -33,7 +33,7 @@ public class ProductController {
 
     @GetMapping("/findProductsByName")
     public ResponseEntity<List<Product>> getProductsByName(@RequestParam String name) {
-        List<Product> productList = productRepository.findByName(name);
+        List<Product> productList = productService.findByName(name);
 
         LOG.info(productList.toString());
         return new ResponseEntity<>(productList, HttpStatus.OK);
@@ -41,7 +41,7 @@ public class ProductController {
 
     @GetMapping("/findProductById")
     public ResponseEntity<Product> getProductById(@RequestParam String id) {
-        Product product = productRepository.findById(id);
+        Product product = productService.findById(id);
 
         LOG.info(product.getName());
         return new ResponseEntity<>(product, HttpStatus.OK);
