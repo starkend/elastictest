@@ -4,3 +4,7 @@ server:
 elasticsearch:
   host: localhost
   port: 9200
+
+service:
+  datakick:
+    url: https://www.datakick.org/api/items
