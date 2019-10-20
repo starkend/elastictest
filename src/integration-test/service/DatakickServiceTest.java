@@ -39,4 +39,14 @@ public class DatakickServiceTest {
         assertNotNull(productList);
         assertFalse(productList.isEmpty());
     }
+
+    @Test
+    public void whenSearchByMultipleWords_thenReturnPopulatedItemsList() {
+        String queryString = "peanut butter";
+        List<ProductDto> productList = datakickService.getItemsByQuery(queryString);
+
+        assertNotNull(productList);
+        assertFalse(productList.isEmpty());
+        productList.forEach(p -> System.out.println(p.getName()));
+    }
 }
