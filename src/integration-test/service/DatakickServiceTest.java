@@ -31,4 +31,12 @@ public class DatakickServiceTest {
         productList.forEach(p -> System.out.println(p.getName()));
     }
 
+    @Test
+    public void whenSearchBySingleWord_thenReturnPopulatedItemsList() {
+        String queryString = "peanut";
+        List<ProductDto> productList = datakickService.getItemsByQuery(queryString);
+
+        assertNotNull(productList);
+        assertFalse(productList.isEmpty());
+    }
 }
