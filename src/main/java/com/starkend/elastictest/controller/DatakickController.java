@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,7 +26,12 @@ public class DatakickController {
     }
 
     @GetMapping("/products")
-    public ResponseEntity<List<ProductDto>> getDatakickProducts() {
+    public ResponseEntity<List<ProductDto>> getProducts() {
         return new ResponseEntity<>(datakickService.getItemsList(), HttpStatus.OK);
+    }
+
+    @GetMapping("/productQuery")
+    public ResponseEntity<List<ProductDto>> getProductsByQuery(@RequestParam String query) {
+        return new ResponseEntity<>(datakickService.getItemsByQuery(query), HttpStatus.OK);
     }
 }
