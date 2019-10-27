@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.starkend.elastictest.model.Product;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.DocWriteResponse;
-import org.elasticsearch.action.bulk.BulkItemResponse;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -121,7 +120,7 @@ public class ProductRepository {
         try {
             product = objectMapper.readValue(getResponse.getSourceAsString(), Product.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e.getLocalizedMessage());
         }
 
         return product;
@@ -138,7 +137,7 @@ public class ProductRepository {
         try {
             searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e.getLocalizedMessage());
         }
 
         return processSearchResponse(searchResponse);
@@ -161,7 +160,7 @@ public class ProductRepository {
         try {
             bulkResponse = restHighLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e.getLocalizedMessage());
         }
 
         didAllSucceed = bulkResponse.hasFailures() ? false : true;
