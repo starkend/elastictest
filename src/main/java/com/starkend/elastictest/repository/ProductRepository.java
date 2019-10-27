@@ -165,11 +165,6 @@ public class ProductRepository {
 
         didAllSucceed = bulkResponse.hasFailures() ? false : true;
 
-//        for (BulkItemResponse bulkItemResponse : bulkResponse) {
-//            DocWriteResponse itemResponse = bulkItemResponse.getResponse();
-//            IndexResponse indexResponse = (IndexResponse) itemResponse;
-//        }
-
         return didAllSucceed;
     }
 
