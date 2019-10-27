@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.starkend.elastictest.model.Product;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.DocWriteResponse;
+import org.elasticsearch.action.bulk.BulkItemResponse;
+import org.elasticsearch.action.bulk.BulkRequest;
+import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
@@ -142,6 +145,36 @@ public class ProductRepository {
 
     }
 
+    public boolean bulkInsertProducts(List<Product> insertProductList) {
+        BulkRequest bulkRequest = new BulkRequest();
+        boolean didAllSucceed = false;
+
+        for (Product product : insertProductList) {
+            Map attrMap = objectMapper.convertValue(product, Map.class);
+            IndexRequest indexRequest = new IndexRequest(INDEX)
+                    .id(product.getId())
+                    .source(attrMap);
+            bulkRequest.add(indexRequest);
+        }
+
+        BulkResponse bulkResponse = null;
+        try {
+            bulkResponse = restHighLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        didAllSucceed = bulkResponse.hasFailures() ? false : true;
+
+//        for (BulkItemResponse bulkItemResponse : bulkResponse) {
+//            DocWriteResponse itemResponse = bulkItemResponse.getResponse();
+//            IndexResponse indexResponse = (IndexResponse) itemResponse;
+//        }
+
+        return didAllSucceed;
+    }
+
+
     private List<Product> processSearchResponse(SearchResponse searchResponse) {
         SearchHits hits = searchResponse.getHits();
 
@@ -163,4 +196,5 @@ public class ProductRepository {
 
         return productList;
     }
+
 }

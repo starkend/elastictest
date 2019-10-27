@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -86,6 +87,20 @@ public class ProductRepositoryTest {
 
         assertNotNull(productList);
         assertFalse(productList.isEmpty());
+    }
+
+    @Test
+    public void whenBulkInsertProducts_thenSucceed() {
+        List<Product> insertProductList = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            Product product = createProduct("Bulk Brand " + i, "Bulk Name " + i, 100L + i);
+            insertProductList.add(product);
+        }
+
+        boolean didSucceed = productRepository.bulkInsertProducts(insertProductList);
+
+        assertTrue(didSucceed);
     }
 
     private Product createProduct(String brandName, String name, long gtin) {
