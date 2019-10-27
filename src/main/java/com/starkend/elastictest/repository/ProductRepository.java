@@ -163,7 +163,7 @@ public class ProductRepository {
             LOG.error(e.getLocalizedMessage());
         }
 
-        didAllSucceed = bulkResponse.hasFailures() ? false : true;
+        didAllSucceed = !bulkResponse.hasFailures();
 
         return didAllSucceed;
     }
