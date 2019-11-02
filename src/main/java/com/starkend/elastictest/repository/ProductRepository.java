@@ -33,6 +33,7 @@ import java.util.Map;
 @Repository
 public class ProductRepository {
 
+    private static final int MAX_RESULT_SIZE = 100;
     private static Logger LOG = LoggerFactory.getLogger(ProductRepository.class);
 
     private final String INDEX = "productindex";
@@ -79,6 +80,7 @@ public class ProductRepository {
         final String PRODUCT_NAME_FIELD = "name";
         QueryBuilder matchQueryBuilder = QueryBuilders.matchQuery(PRODUCT_NAME_FIELD, name);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        searchSourceBuilder.size(MAX_RESULT_SIZE);
         searchSourceBuilder.query(matchQueryBuilder);
 
         searchRequest.source(searchSourceBuilder);
@@ -130,6 +132,7 @@ public class ProductRepository {
         SearchRequest searchRequest = new SearchRequest(INDEX);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+        searchSourceBuilder.size(MAX_RESULT_SIZE);
         searchRequest.source(searchSourceBuilder);
 
         SearchResponse searchResponse = null;
