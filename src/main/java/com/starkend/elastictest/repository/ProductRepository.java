@@ -79,8 +79,7 @@ public class ProductRepository {
         SearchRequest searchRequest = new SearchRequest(INDEX);
         final String PRODUCT_NAME_FIELD = "name";
         QueryBuilder matchQueryBuilder = QueryBuilders.matchQuery(PRODUCT_NAME_FIELD, name);
-        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        searchSourceBuilder.size(MAX_RESULT_SIZE);
+        SearchSourceBuilder searchSourceBuilder = getSearchSourceBuilder();
         searchSourceBuilder.query(matchQueryBuilder);
 
         searchRequest.source(searchSourceBuilder);
@@ -94,6 +93,8 @@ public class ProductRepository {
 
         return processSearchResponse(searchResponse);
     }
+
+
 
     public boolean deleteById(String id) {
         DeleteRequest deleteRequest = new DeleteRequest(INDEX, id);
@@ -130,9 +131,8 @@ public class ProductRepository {
 
     public List<Product> getAllProducts() {
         SearchRequest searchRequest = new SearchRequest(INDEX);
-        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        SearchSourceBuilder searchSourceBuilder = getSearchSourceBuilder();
         searchSourceBuilder.query(QueryBuilders.matchAllQuery());
-        searchSourceBuilder.size(MAX_RESULT_SIZE);
         searchRequest.source(searchSourceBuilder);
 
         SearchResponse searchResponse = null;
@@ -171,6 +171,11 @@ public class ProductRepository {
         return didAllSucceed;
     }
 
+    private SearchSourceBuilder getSearchSourceBuilder() {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        searchSourceBuilder.size(MAX_RESULT_SIZE);
+        return searchSourceBuilder;
+    }
 
     private List<Product> processSearchResponse(SearchResponse searchResponse) {
         SearchHits hits = searchResponse.getHits();
