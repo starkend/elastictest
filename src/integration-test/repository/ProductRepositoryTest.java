@@ -101,6 +101,11 @@ public class ProductRepositoryTest {
         boolean didSucceed = productRepository.bulkInsertProducts(insertProductList);
 
         assertTrue(didSucceed);
+
+        for (Product product : insertProductList) {
+            boolean didDeleteSucceed = productRepository.deleteById(product.getId());
+            assertTrue(didDeleteSucceed);
+        }
     }
 
     private Product createProduct(String brandName, String name, long gtin) {
