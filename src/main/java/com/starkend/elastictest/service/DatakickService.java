@@ -1,6 +1,7 @@
 package com.starkend.elastictest.service;
 
 import com.starkend.elastictest.dto.ProductDto;
+import com.starkend.elastictest.model.Product;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -12,9 +13,12 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import util.ProductUtils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 @Service
 public class DatakickService {
@@ -43,6 +47,16 @@ public class DatakickService {
 
         return responseEntity.getBody();
     }
+
+    public List<Product> getProductList() {
+        List<ProductDto> dtoList = getItemsList();
+        List<Product> productList = new ArrayList<>();
+        //symbolRatesDtos.getRates().forEach(rateDto -> symbolList.add(rateDto.getSymbol()));
+
+        dtoList.forEach(productDto -> productList.add(ProductUtils.convertProductDtoToProduct(productDto)));
+        return productList;
+    }
+
 
     public List<ProductDto> getItemsByQuery(String queryString) {
         HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
@@ -85,4 +99,5 @@ public class DatakickService {
 
         return outputString;
     }
+
 }
