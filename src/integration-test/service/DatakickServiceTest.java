@@ -23,8 +23,8 @@ public class DatakickServiceTest {
     DatakickService datakickService;
 
     @Test
-    public void whenGetItems_thenReturnPopulatedItemsList() {
-        List<ProductDto> productList = datakickService.getItemsList();
+    public void whenGetProductDtoList_thenReturnPopulatedDtoList() {
+        List<ProductDto> productList = datakickService.getProductDtoList();
 
         assertNotNull(productList);
         assertFalse(productList.isEmpty());
@@ -33,18 +33,18 @@ public class DatakickServiceTest {
     }
 
     @Test
-    public void whenSearchBySingleWord_thenReturnPopulatedItemsList() {
+    public void whenSearchBySingleWord_thenReturnPopulatedDtoList() {
         String queryString = "peanut";
-        List<ProductDto> productList = datakickService.getItemsByQuery(queryString);
+        List<ProductDto> productList = datakickService.getProductDtoListByQuery(queryString);
 
         assertNotNull(productList);
         assertFalse(productList.isEmpty());
     }
 
     @Test
-    public void whenSearchByMultipleWords_thenReturnPopulatedItemsList() {
+    public void whenSearchByMultipleWords_thenReturnPopulatedDtoList() {
         String queryString = "peanut butter";
-        List<ProductDto> productList = datakickService.getItemsByQuery(queryString);
+        List<ProductDto> productList = datakickService.getProductDtoListByQuery(queryString);
 
         assertNotNull(productList);
         assertFalse(productList.isEmpty());
@@ -52,7 +52,7 @@ public class DatakickServiceTest {
     }
 
     @Test
-    public void whenGetProductModelItems_thenReturnPopulatedItemsList() {
+    public void whenGetProductModelItems_thenReturnPopulatedDtoList() {
         List<Product> productList = datakickService.getProductList();
 
         assertNotNull(productList);

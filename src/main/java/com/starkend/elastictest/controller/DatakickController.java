@@ -27,11 +27,11 @@ public class DatakickController {
 
     @GetMapping("/products")
     public ResponseEntity<List<ProductDto>> getProducts() {
-        return new ResponseEntity<>(datakickService.getItemsList(), HttpStatus.OK);
+        return new ResponseEntity<>(datakickService.getProductDtoList(), HttpStatus.OK);
     }
 
     @GetMapping("/productQuery")
     public ResponseEntity<List<ProductDto>> getProductsByQuery(@RequestParam String query) {
-        return new ResponseEntity<>(datakickService.getItemsByQuery(query), HttpStatus.OK);
+        return new ResponseEntity<>(datakickService.getProductDtoListByQuery(query), HttpStatus.OK);
     }
 }

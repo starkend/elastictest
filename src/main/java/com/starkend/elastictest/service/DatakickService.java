@@ -33,7 +33,7 @@ public class DatakickService {
         this.restTemplate = restTemplate;
     }
 
-    public List<ProductDto> getItemsList() {
+    public List<ProductDto> getProductDtoList() {
         HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
 
         HttpEntity<List<ProductDto>> responseEntity = restTemplate.exchange(
@@ -48,7 +48,7 @@ public class DatakickService {
     }
 
     public List<Product> getProductList() {
-        List<ProductDto> dtoList = getItemsList();
+        List<ProductDto> dtoList = getProductDtoList();
         List<Product> productList = new ArrayList<>();
 
         dtoList.forEach(productDto -> productList.add(ProductUtils.convertProductDtoToProduct(productDto)));
@@ -56,7 +56,7 @@ public class DatakickService {
     }
 
 
-    public List<ProductDto> getItemsByQuery(String queryString) {
+    public List<ProductDto> getProductDtoListByQuery(String queryString) {
         HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
 
         //NOTE: The Datakick API requires a plus sign(+) between multi-word search items
