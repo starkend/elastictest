@@ -18,7 +18,6 @@ import util.ProductUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.StreamSupport;
 
 @Service
 public class DatakickService {
@@ -51,7 +50,6 @@ public class DatakickService {
     public List<Product> getProductList() {
         List<ProductDto> dtoList = getItemsList();
         List<Product> productList = new ArrayList<>();
-        //symbolRatesDtos.getRates().forEach(rateDto -> symbolList.add(rateDto.getSymbol()));
 
         dtoList.forEach(productDto -> productList.add(ProductUtils.convertProductDtoToProduct(productDto)));
         return productList;
