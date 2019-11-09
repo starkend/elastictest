@@ -25,16 +25,17 @@ public class ProductServiceTest {
     public void whenFindByName_thenSucceed() {
         List<Product> productList = productService.findByName("Test");
 
-        System.out.println("Size is " + productList.size());
-
-        assertNotNull(productList);
-        assertFalse(productList.isEmpty());
+        verifyProductList(productList);
     }
 
     @Test
     public void whenGetAllProducts_thenSucceed() {
         List<Product> productList = productService.getAllProducts();
 
+        verifyProductList(productList);
+    }
+
+    private void verifyProductList(List<Product> productList) {
         System.out.println("Size is " + productList.size());
 
         assertNotNull(productList);
