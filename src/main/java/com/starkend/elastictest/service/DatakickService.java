@@ -13,7 +13,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import util.ProductUtils;
+import com.starkend.elastictest.util.ProductUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;

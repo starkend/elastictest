@@ -1,4 +1,4 @@
-package util;
+package com.starkend.elastictest.util;
 
 import com.starkend.elastictest.dto.ProductDto;
 import com.starkend.elastictest.model.Product;
