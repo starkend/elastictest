@@ -30,4 +30,14 @@ public class ProductServiceTest {
         assertNotNull(productList);
         assertFalse(productList.isEmpty());
     }
+
+    @Test
+    public void whenGetAllProducts_thenSucceed() {
+        List<Product> productList = productService.getAllProducts();
+
+        System.out.println("Size is " + productList.size());
+
+        assertNotNull(productList);
+        assertFalse(productList.isEmpty());
+    }
 }
