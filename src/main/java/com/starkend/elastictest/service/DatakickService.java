@@ -48,10 +48,9 @@ public class DatakickService {
     }
 
     public List<Product> getProductList() {
-        List<ProductDto> dtoList = getProductDtoList();
         List<Product> productList = new ArrayList<>();
 
-        dtoList.forEach(productDto -> productList.add(ProductUtils.convertProductDtoToProduct(productDto)));
+        getProductDtoList().forEach(productDto -> productList.add(ProductUtils.convertProductDtoToProduct(productDto)));
         return productList;
     }
 
