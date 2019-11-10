@@ -1,9 +1,12 @@
 package com.starkend.elastictest.service;
 
+import com.starkend.elastictest.dto.ProductDto;
 import com.starkend.elastictest.model.Product;
 import com.starkend.elastictest.repository.ProductRepository;
+import com.starkend.elastictest.util.ProductUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,4 +34,10 @@ public class ProductService {
 
     public List<Product> getAllProducts() { return productRepository.getAllProducts(); }
 
+    public List<ProductDto> getAllProductsAsDtos() {
+        List<ProductDto> productDtos = new ArrayList<>();
+        getAllProducts().forEach(product -> productDtos.add(ProductUtils.convertProductToProductDto(product)));
+
+        return  productDtos;
+    }
 }

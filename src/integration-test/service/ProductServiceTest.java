@@ -36,6 +36,13 @@ public class ProductServiceTest {
         verifyProductList(productList);
     }
 
+    @Test
+    public void whenGetAllProductsAsDtos_thenSucceed() {
+        List<ProductDto> productDtos = productService.getAllProductsAsDtos();
+
+        verifyProductList(productDtos);
+    }
+
     private <T> void verifyProductList(List<T> productList) {
         System.out.println("Size is " + productList.size());
 
