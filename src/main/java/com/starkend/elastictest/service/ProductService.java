@@ -27,12 +27,8 @@ public class ProductService {
         return productRepository.deleteById(id);
     }
 
-    public Product findById(String id) {
-        return productRepository.findById(id);
-    }
+    public Product findById(String id) { return productRepository.findById(id); }
 
-    public List<Product> getAllProducts() {
-        return productRepository.getAllProducts();
-    }
+    public List<Product> getAllProducts() { return productRepository.getAllProducts(); }
 
 }
