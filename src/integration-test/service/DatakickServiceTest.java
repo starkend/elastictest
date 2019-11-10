@@ -52,7 +52,7 @@ public class DatakickServiceTest {
     }
 
     @Test
-    public void whenGetProductModelItems_thenReturnPopulatedDtoList() {
+    public void whenGetProductList_thenReturnPopulatedProductList() {
         List<Product> productList = datakickService.getProductList();
 
         assertNotNull(productList);

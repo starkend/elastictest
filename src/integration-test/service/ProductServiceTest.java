@@ -23,21 +23,21 @@ public class ProductServiceTest {
     ProductService productService;
 
     @Test
-    public void whenFindByName_thenSucceed() {
+    public void whenFindByName_thenReturnPopulatedProductList() {
         List<Product> productList = productService.findByName("Test");
 
         verifyProductList(productList);
     }
 
     @Test
-    public void whenGetAllProducts_thenSucceed() {
+    public void whenGetAllProducts_thenReturnPopulatedProductList() {
         List<Product> productList = productService.getAllProducts();
 
         verifyProductList(productList);
     }
 
     @Test
-    public void whenGetAllProductsAsDtos_thenSucceed() {
+    public void whenGetAllProductsAsDtos_thenReturnPopulatedDtoList() {
         List<ProductDto> productDtos = productService.getAllProductsAsDtos();
 
         verifyProductList(productDtos);
