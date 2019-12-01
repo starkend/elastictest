@@ -40,4 +40,8 @@ public class ProductService {
 
         return  productDtos;
     }
+
+    public boolean bulkInsertProducts(List<Product> insertProductList) {
+        return productRepository.bulkInsertProducts(insertProductList);
+    }
 }
