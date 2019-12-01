@@ -25,10 +25,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class ProductRepository {
@@ -48,6 +45,10 @@ public class ProductRepository {
     }
 
     public Product insertProduct(Product product) {
+        if (product.getId() == null) {
+            product.setId(UUID.randomUUID().toString());
+        }
+
         Map attrMap = objectMapper.convertValue(product, Map.class);
         IndexRequest indexRequest = new IndexRequest(INDEX)
                 .id(product.getId())
