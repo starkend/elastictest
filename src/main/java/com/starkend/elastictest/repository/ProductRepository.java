@@ -96,7 +96,6 @@ public class ProductRepository {
     }
 
 
-
     public boolean deleteById(String id) {
         DeleteRequest deleteRequest = new DeleteRequest(INDEX, id);
 

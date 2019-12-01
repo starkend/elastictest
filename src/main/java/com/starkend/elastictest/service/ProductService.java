@@ -30,15 +30,19 @@ public class ProductService {
         return productRepository.deleteById(id);
     }
 
-    public Product findById(String id) { return productRepository.findById(id); }
+    public Product findById(String id) {
+        return productRepository.findById(id);
+    }
 
-    public List<Product> getAllProducts() { return productRepository.getAllProducts(); }
+    public List<Product> getAllProducts() {
+        return productRepository.getAllProducts();
+    }
 
     public List<ProductDto> getAllProductsAsDtos() {
         List<ProductDto> productDtos = new ArrayList<>();
         getAllProducts().forEach(product -> productDtos.add(ProductUtils.convertProductToProductDto(product)));
 
-        return  productDtos;
+        return productDtos;
     }
 
     public boolean bulkInsertProducts(List<Product> insertProductList) {
