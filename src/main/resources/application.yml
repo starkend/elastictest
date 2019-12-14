@@ -1,6 +1,7 @@
 server:
   port: 8080
 
+
 elasticsearch:
   host: localhost
   port: 9200
@@ -8,3 +9,13 @@ elasticsearch:
 service:
   datakick:
     url: https://www.datakick.org/api/items
+
+management:
+  endpoint:
+    info:
+      enabled: true
+
+info:
+  app:
+    name: Elastictest App
+    version: 0.0.1
