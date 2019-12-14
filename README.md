@@ -14,3 +14,5 @@ Elasticsearch proof of concept
     - docker run -p 9200:9200 -p 9300:9300 -v $PWD/elasticsearch/data:/usr/share/elasticsearch/data -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.3.2
 - **Datakick API**
   - https://www.datakick.org/api
+  **Swagger**
+    - API Documentation
