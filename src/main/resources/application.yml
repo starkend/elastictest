@@ -1,7 +1,6 @@
 server:
   port: 8080
 
-
 elasticsearch:
   host: localhost
   port: 9200
@@ -19,3 +18,4 @@ info:
   app:
     name: Elastictest App
     version: 0.0.1
+    description: Spring Boot app using Elasticsearch Rest High Level Client from version 7.3.2
