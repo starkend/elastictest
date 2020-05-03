@@ -13,6 +13,8 @@ management:
   endpoint:
     info:
       enabled: true
+    health:
+      show-details: always
 
 info:
   app:
