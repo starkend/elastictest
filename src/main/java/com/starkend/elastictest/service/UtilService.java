@@ -1,7 +1,7 @@
 package com.starkend.elastictest.service;
 
 import com.starkend.elastictest.dto.ProductDto;
-import com.starkend.elastictest.model.Product;
+import com.starkend.elastictest.model.DKProduct;
 import com.starkend.elastictest.util.ProductUtils;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class UtilService {
         this.datakickService = datakickService;
     }
 
-    public Product insertDatakickProductToElasticIndex(ProductDto productDto) {
+    public DKProduct insertDatakickProductToElasticIndex(ProductDto productDto) {
         return productService.insertProduct(ProductUtils.convertProductDtoToProduct(productDto));
     }
 

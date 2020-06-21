@@ -1,7 +1,7 @@
 package com.starkend.elastictest.service;
 
 import com.starkend.elastictest.dto.ProductDto;
-import com.starkend.elastictest.model.Product;
+import com.starkend.elastictest.model.DKProduct;
 import com.starkend.elastictest.repository.ProductRepository;
 import com.starkend.elastictest.util.ProductUtils;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,11 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product insertProduct(Product product) {
-        return productRepository.insertProduct(product);
+    public DKProduct insertProduct(DKProduct DKProduct) {
+        return productRepository.insertProduct(DKProduct);
     }
 
-    public List<Product> findByName(String name) {
+    public List<DKProduct> findByName(String name) {
         return productRepository.findByName(name);
     }
 
@@ -30,11 +30,11 @@ public class ProductService {
         return productRepository.deleteById(id);
     }
 
-    public Product findById(String id) {
+    public DKProduct findById(String id) {
         return productRepository.findById(id);
     }
 
-    public List<Product> getAllProducts() {
+    public List<DKProduct> getAllProducts() {
         return productRepository.getAllProducts();
     }
 
@@ -45,7 +45,7 @@ public class ProductService {
         return productDtos;
     }
 
-    public boolean bulkInsertProducts(List<Product> insertProductList) {
-        return productRepository.bulkInsertProducts(insertProductList);
+    public boolean bulkInsertProducts(List<DKProduct> insertDKProductList) {
+        return productRepository.bulkInsertProducts(insertDKProductList);
     }
 }

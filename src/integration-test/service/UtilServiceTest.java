@@ -2,7 +2,7 @@ package service;
 
 import com.starkend.elastictest.ElastictestApplication;
 import com.starkend.elastictest.dto.ProductDto;
-import com.starkend.elastictest.model.Product;
+import com.starkend.elastictest.model.DKProduct;
 import com.starkend.elastictest.service.DatakickService;
 import com.starkend.elastictest.service.ProductService;
 import com.starkend.elastictest.service.UtilService;
@@ -41,12 +41,12 @@ public class UtilServiceTest {
         ProductDto productDto = productDtos.isEmpty() ? null : productDtos.get(0);
         assertNotNull(productDto);
 
-        Product savedProduct = utilService.insertDatakickProductToElasticIndex(productDto);
-        assertNotNull(savedProduct);
+        DKProduct savedDKProduct = utilService.insertDatakickProductToElasticIndex(productDto);
+        assertNotNull(savedDKProduct);
 
-        assertEquals(productDto.getGtin14(), savedProduct.getGtin14());
+        assertEquals(productDto.getGtin14(), savedDKProduct.getGtin14());
 
-        productService.deleteById(savedProduct.getId());
+        productService.deleteById(savedDKProduct.getId());
 
     }
 }

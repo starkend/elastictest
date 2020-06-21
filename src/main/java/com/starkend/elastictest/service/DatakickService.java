@@ -1,7 +1,7 @@
 package com.starkend.elastictest.service;
 
 import com.starkend.elastictest.dto.ProductDto;
-import com.starkend.elastictest.model.Product;
+import com.starkend.elastictest.model.DKProduct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -47,11 +47,11 @@ public class DatakickService {
         return responseEntity.getBody();
     }
 
-    public List<Product> getProductList() {
-        List<Product> productList = new ArrayList<>();
+    public List<DKProduct> getProductList() {
+        List<DKProduct> DKProductList = new ArrayList<>();
 
-        getProductDtoList().forEach(productDto -> productList.add(ProductUtils.convertProductDtoToProduct(productDto)));
-        return productList;
+        getProductDtoList().forEach(productDto -> DKProductList.add(ProductUtils.convertProductDtoToProduct(productDto)));
+        return DKProductList;
     }
 
 

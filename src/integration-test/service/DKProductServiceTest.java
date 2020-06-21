@@ -2,7 +2,7 @@ package service;
 
 import com.starkend.elastictest.ElastictestApplication;
 import com.starkend.elastictest.dto.ProductDto;
-import com.starkend.elastictest.model.Product;
+import com.starkend.elastictest.model.DKProduct;
 import com.starkend.elastictest.service.ProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,23 +17,23 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ElastictestApplication.class)
-public class ProductServiceTest {
+public class DKProductServiceTest {
 
     @Autowired
     ProductService productService;
 
     @Test
     public void whenFindByName_thenReturnPopulatedProductList() {
-        List<Product> productList = productService.findByName("Test");
+        List<DKProduct> DKProductList = productService.findByName("Test");
 
-        verifyProductList(productList);
+        verifyProductList(DKProductList);
     }
 
     @Test
     public void whenGetAllProducts_thenReturnPopulatedProductList() {
-        List<Product> productList = productService.getAllProducts();
+        List<DKProduct> DKProductList = productService.getAllProducts();
 
-        verifyProductList(productList);
+        verifyProductList(DKProductList);
     }
 
     @Test

@@ -1,7 +1,7 @@
 package com.starkend.elastictest.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starkend.elastictest.model.Product;
+import com.starkend.elastictest.model.DKProduct;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -44,14 +44,14 @@ public class ProductRepository {
         this.restHighLevelClient = restHighLevelClient;
     }
 
-    public Product insertProduct(Product product) {
-        if (product.getId() == null) {
-            product.setId(UUID.randomUUID().toString());
+    public DKProduct insertProduct(DKProduct DKProduct) {
+        if (DKProduct.getId() == null) {
+            DKProduct.setId(UUID.randomUUID().toString());
         }
 
-        Map attrMap = objectMapper.convertValue(product, Map.class);
+        Map attrMap = objectMapper.convertValue(DKProduct, Map.class);
         IndexRequest indexRequest = new IndexRequest(INDEX)
-                .id(product.getId())
+                .id(DKProduct.getId())
                 .source(attrMap);
 
         IndexResponse response = null;
@@ -69,14 +69,14 @@ public class ProductRepository {
         switch (result) {
             case CREATED:
             case UPDATED:
-                return product;
+                return DKProduct;
             default:
                 LOG.error("Response result type not CREATED or UPDATED as expected");
                 return null;
         }
     }
 
-    public List<Product> findByName(String name) {
+    public List<DKProduct> findByName(String name) {
         SearchRequest searchRequest = new SearchRequest(INDEX);
         final String PRODUCT_NAME_FIELD = "name";
         QueryBuilder matchQueryBuilder = QueryBuilders.matchQuery(PRODUCT_NAME_FIELD, name);
@@ -109,7 +109,7 @@ public class ProductRepository {
         return deleteResponse.getResult().equals(DocWriteResponse.Result.DELETED);
     }
 
-    public Product findById(String id) {
+    public DKProduct findById(String id) {
         GetRequest getRequest = new GetRequest(INDEX, id);
 
         GetResponse getResponse = null;
@@ -119,17 +119,17 @@ public class ProductRepository {
             LOG.error(e.getLocalizedMessage());
         }
 
-        Product product = null;
+        DKProduct DKProduct = null;
         try {
-            product = objectMapper.readValue(getResponse.getSourceAsString(), Product.class);
+            DKProduct = objectMapper.readValue(getResponse.getSourceAsString(), DKProduct.class);
         } catch (IOException e) {
             LOG.error(e.getLocalizedMessage());
         }
 
-        return product;
+        return DKProduct;
     }
 
-    public List<Product> getAllProducts() {
+    public List<DKProduct> getAllProducts() {
         SearchRequest searchRequest = new SearchRequest(INDEX);
         SearchSourceBuilder searchSourceBuilder = getSearchSourceBuilder();
         searchSourceBuilder.query(QueryBuilders.matchAllQuery());
@@ -147,14 +147,14 @@ public class ProductRepository {
 
     }
 
-    public boolean bulkInsertProducts(List<Product> insertProductList) {
+    public boolean bulkInsertProducts(List<DKProduct> insertDKProductList) {
         BulkRequest bulkRequest = new BulkRequest();
         boolean didAllSucceed = false;
 
-        for (Product product : insertProductList) {
-            Map attrMap = objectMapper.convertValue(product, Map.class);
+        for (DKProduct DKProduct : insertDKProductList) {
+            Map attrMap = objectMapper.convertValue(DKProduct, Map.class);
             IndexRequest indexRequest = new IndexRequest(INDEX)
-                    .id(product.getId())
+                    .id(DKProduct.getId())
                     .source(attrMap);
             bulkRequest.add(indexRequest);
         }
@@ -177,26 +177,26 @@ public class ProductRepository {
         return searchSourceBuilder;
     }
 
-    private List<Product> processSearchResponse(SearchResponse searchResponse) {
+    private List<DKProduct> processSearchResponse(SearchResponse searchResponse) {
         SearchHits hits = searchResponse.getHits();
 
         if (hits == null) {
-            return new ArrayList<Product>();
+            return new ArrayList<DKProduct>();
         }
 
-        List<Product> productList = new ArrayList<>();
+        List<DKProduct> DKProductList = new ArrayList<>();
 
         Arrays.stream(hits.getHits()).forEach(hit -> {
             String source = hit.getSourceAsString();
             try {
-                Product product = objectMapper.readValue(source, Product.class);
-                productList.add(product);
+                DKProduct DKProduct = objectMapper.readValue(source, DKProduct.class);
+                DKProductList.add(DKProduct);
             } catch (IOException e) {
                 LOG.error(e.getLocalizedMessage());
             }
         });
 
-        return productList;
+        return DKProductList;
     }
 
 }

@@ -8,6 +8,9 @@ elasticsearch:
 service:
   datakick:
     url: https://www.datakick.org/api/items
+  spoonacular:
+    url: https://api.spoonacular.com
+    apiKey: 1d99ae7535a64ab0a2357a46bfd37582
 
 management:
   endpoint:

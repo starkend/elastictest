@@ -11,7 +11,7 @@ Elasticsearch proof of concept
     - Create directory to store Elasticsearch data beyond the life of the docker container
         - sudo mkdir -p $PWD/elasticsearch/data
         - sudo chmod 777 -R $PWD/elasticsearch/data
-    - docker run -p 9200:9200 -p 9300:9300 -v $PWD/elasticsearch/data:/usr/share/elasticsearch/data -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.3.2
+    - docker run -p 9200:9200 -p 9300:9300 -v $PWD/elasticsearch/data:/usr/share/elasticsearch/data -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.2
 - **Datakick API**
   - https://www.datakick.org/api
 -  **Swagger**

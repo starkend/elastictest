@@ -2,7 +2,7 @@ package service;
 
 import com.starkend.elastictest.ElastictestApplication;
 import com.starkend.elastictest.dto.ProductDto;
-import com.starkend.elastictest.model.Product;
+import com.starkend.elastictest.model.DKProduct;
 import com.starkend.elastictest.service.DatakickService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,9 +53,9 @@ public class DatakickServiceTest {
 
     @Test
     public void whenGetProductList_thenReturnPopulatedProductList() {
-        List<Product> productList = datakickService.getProductList();
+        List<DKProduct> DKProductList = datakickService.getProductList();
 
-        assertNotNull(productList);
-        assertFalse(productList.isEmpty());
+        assertNotNull(DKProductList);
+        assertFalse(DKProductList.isEmpty());
     }
 }
