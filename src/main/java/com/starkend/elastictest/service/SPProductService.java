@@ -15,7 +15,6 @@ import java.io.IOException;
 @Service
 public class SPProductService {
 
-    private static final String QUERY_PARAM = "query";
     private static final String API_KEY_PARAM = "apiKey";
 
     @Value("${service.spoonacular.url}")
@@ -24,9 +23,9 @@ public class SPProductService {
     @Value("${service.spoonacular.apiKey}")
     private String API_KEY;
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     public SPProductService(RestTemplate restTemplate, ObjectMapper objectMapper) {
         this.restTemplate = restTemplate;
