@@ -7,12 +7,15 @@ Elasticsearch proof of concept
 - **Spring Boot**
 - **Elasticsearch**
     - run with Docker
-    - docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.2
+    - docker pull docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     - Create directory to store Elasticsearch data beyond the life of the docker container
         - sudo mkdir -p $PWD/elasticsearch/data
         - sudo chmod 777 -R $PWD/elasticsearch/data
     - docker run -p 9200:9200 -p 9300:9300 -v $PWD/elasticsearch/data:/usr/share/elasticsearch/data -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.2
 - **Datakick API**
+  - ***NOTE:*** Datakick is now dead and no longer returning data.  The process of replacing Datakick has begun.
   - https://www.datakick.org/api
+- **Spoonacular API**
+  - https://api.spoonacular.com
 -  **Swagger**
       - API Documentation
