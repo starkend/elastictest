@@ -5,15 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Nutrient {
-    private String title;
-    private BigDecimal amount;
-    private String unit;
-    private BigDecimal percentOfDailyNeeds;
+public class ProductNutrition {
+    private List<ProductNutrient> nutrients;
+    private ProductCaloricBreakdown caloricBreakdown;
 }

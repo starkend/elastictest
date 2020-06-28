@@ -23,12 +23,12 @@ public class Product {
     private BigDecimal ingredientCount;
     private String generatedText;
     private String ingredientList;
-    private List<Ingredient> ingredients;
+    private List<ProductIngredient> ingredients;
     private BigDecimal likes;
     @JsonProperty("number_of_servings")
     private BigDecimal numberOfServings;
     private String aisle;
-    private Nutrition nutrition;
+    private ProductNutrition nutrition;
     private BigDecimal price;
     @JsonProperty("serving_size")
     private String servingSize;
