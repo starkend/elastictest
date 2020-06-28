@@ -19,7 +19,7 @@ public class SPProductServiceTest {
     SPProductService spProductService;
 
     @Test
-    public void whenGetProduct_thenSucceed() {
+    public void whenGetProductById_thenSucceed() {
         Product product = spProductService.getProduct(22347L);
 
         assertNotNull(product);
