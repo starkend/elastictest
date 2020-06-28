@@ -16,16 +16,12 @@ import java.io.IOException;
 public class SPProductService {
 
     private static final String API_KEY_PARAM = "apiKey";
-
+    private final RestTemplate restTemplate;
+    private final ObjectMapper objectMapper;
     @Value("${service.spoonacular.url}")
     private String BASE_URL;
-
     @Value("${service.spoonacular.apiKey}")
     private String API_KEY;
-
-    private final RestTemplate restTemplate;
-
-    private final ObjectMapper objectMapper;
 
     public SPProductService(RestTemplate restTemplate, ObjectMapper objectMapper) {
         this.restTemplate = restTemplate;

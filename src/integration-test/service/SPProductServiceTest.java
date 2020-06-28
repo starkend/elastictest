@@ -20,7 +20,8 @@ public class SPProductServiceTest {
 
     @Test
     public void whenGetProductById_thenSucceed() {
-        Product product = spProductService.getProductById(22347L);
+        final Long SNICKERS_MINI_PRODUCT_ID = 22347L;
+        Product product = spProductService.getProductById(SNICKERS_MINI_PRODUCT_ID);
 
         assertNotNull(product);
         System.out.println(product);
