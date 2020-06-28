@@ -32,7 +32,7 @@ public class SPProductService {
         this.objectMapper = objectMapper;
     }
 
-    public Product getProduct(Long productId) {
+    public Product getProductById(Long productId) {
         String url = BASE_URL + "/food/products/" + productId + "?" + API_KEY_PARAM + "=" + API_KEY;
 
         HttpEntity<String> response = getStringResponse(url);

@@ -20,9 +20,10 @@ public class SPProductServiceTest {
 
     @Test
     public void whenGetProductById_thenSucceed() {
-        Product product = spProductService.getProduct(22347L);
+        Product product = spProductService.getProductById(22347L);
 
         assertNotNull(product);
         System.out.println(product);
     }
+
 }

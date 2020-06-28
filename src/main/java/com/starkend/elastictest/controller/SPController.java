@@ -25,7 +25,7 @@ public class SPController {
 
     @GetMapping("/product")
     public ResponseEntity<Product> getProduct(@RequestParam String prodId) {
-        return new ResponseEntity<>(spProductService.getProduct(Long.valueOf(prodId)), HttpStatus.OK);
+        return new ResponseEntity<>(spProductService.getProductById(Long.valueOf(prodId)), HttpStatus.OK);
     }
 
 }
