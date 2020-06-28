@@ -35,6 +35,16 @@ public class SPProductService {
     public Product getProductById(Long productId) {
         String url = BASE_URL + "/food/products/" + productId + "?" + API_KEY_PARAM + "=" + API_KEY;
 
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processProductResponse(response);
+    }
+
+    public Product getProductByUpc(String upc) {
+        String url = BASE_URL + "/food/products/upc/" + upc + "?" + API_KEY_PARAM + "=" + API_KEY;
+
+        System.out.println(url);
         HttpEntity<String> response = getStringResponse(url);
 
         return processProductResponse(response);
@@ -74,5 +84,6 @@ public class SPProductService {
                 entity,
                 String.class);
     }
+
 
 }

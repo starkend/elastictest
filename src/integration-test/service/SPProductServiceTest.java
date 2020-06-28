@@ -26,4 +26,14 @@ public class SPProductServiceTest {
         System.out.println(product);
     }
 
+
+    @Test
+    public void whenGetProductByUpc_thenSucceed() {
+        final String WHOLE_GRAIN_CHEERIOS_UPC = "016000275287";
+        Product product = spProductService.getProductByUpc(WHOLE_GRAIN_CHEERIOS_UPC);
+
+        assertNotNull(product);
+        System.out.println(product);
+    }
+
 }
