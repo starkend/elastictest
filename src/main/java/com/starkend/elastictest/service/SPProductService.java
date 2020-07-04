@@ -1,6 +1,7 @@
 package com.starkend.elastictest.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.starkend.elastictest.model.Ingredient;
 import com.starkend.elastictest.model.Product;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -46,6 +47,14 @@ public class SPProductService {
         return processProductResponse(response);
     }
 
+    public Ingredient getIngredientInfoById(String ingredientId) {
+        String url = BASE_URL + "/food/ingredients/" + ingredientId + "/information" + "?" + API_KEY_PARAM + "=" + API_KEY;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processIngredientResponse(response);
+    }
+
     private Product processProductResponse(HttpEntity<String> response) {
         Product product;
 
@@ -61,6 +70,25 @@ public class SPProductService {
         }
 
         return product;
+
+    }
+
+
+    private Ingredient processIngredientResponse(HttpEntity<String> response) {
+        Ingredient ingredient;
+
+        if (response != null) {
+            try {
+                ingredient = objectMapper.readValue(response.getBody(), Ingredient.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return ingredient;
 
     }
 
@@ -80,6 +108,7 @@ public class SPProductService {
                 entity,
                 String.class);
     }
+
 
 
 }

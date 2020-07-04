@@ -1,6 +1,7 @@
 package service;
 
 import com.starkend.elastictest.ElastictestApplication;
+import com.starkend.elastictest.model.Ingredient;
 import com.starkend.elastictest.model.Product;
 import com.starkend.elastictest.service.SPProductService;
 import org.junit.Test;
@@ -35,6 +36,15 @@ public class SPProductServiceTest {
 
         assertNotNull(product);
         System.out.println(product);
+    }
+
+    @Test
+    public void whenGetIngredientInfo_thenSucceed() {
+        final String PINEAPPLE_INGREDIENT_ID = "9266";
+        Ingredient ingredient = spProductService.getIngredientInfoById(PINEAPPLE_INGREDIENT_ID);
+
+        assertNotNull(ingredient);
+        System.out.println(ingredient);
     }
 
 }
