@@ -16,13 +16,12 @@ import java.io.IOException;
 @Service
 public class SPProductService {
 
-    private static final String API_KEY_PARAM = "apiKey";
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     @Value("${service.spoonacular.url}")
     private String BASE_URL;
-    @Value("${service.spoonacular.apiKey}")
-    private String API_KEY;
+    @Value("${service.spoonacular.apiUrlComponent}")
+    private String API_URL_COMPONENT;
 
     public SPProductService(RestTemplate restTemplate, ObjectMapper objectMapper) {
         this.restTemplate = restTemplate;
@@ -30,7 +29,7 @@ public class SPProductService {
     }
 
     public Product getProductById(Long productId) {
-        String url = BASE_URL + "/food/products/" + productId + "?" + API_KEY_PARAM + "=" + API_KEY;
+        String url = BASE_URL + "/food/products/" + productId + API_URL_COMPONENT;
 
         System.out.println(url);
         HttpEntity<String> response = getStringResponse(url);
@@ -39,7 +38,7 @@ public class SPProductService {
     }
 
     public Product getProductByUpc(String upc) {
-        String url = BASE_URL + "/food/products/upc/" + upc + "?" + API_KEY_PARAM + "=" + API_KEY;
+        String url = BASE_URL + "/food/products/upc/" + upc + API_URL_COMPONENT;
 
         System.out.println(url);
         HttpEntity<String> response = getStringResponse(url);
@@ -48,7 +47,7 @@ public class SPProductService {
     }
 
     public Ingredient getIngredientInfoById(String ingredientId) {
-        String url = BASE_URL + "/food/ingredients/" + ingredientId + "/information" + "?" + API_KEY_PARAM + "=" + API_KEY;
+        String url = BASE_URL + "/food/ingredients/" + ingredientId + "/information" + API_URL_COMPONENT;
         System.out.println(url);
         HttpEntity<String> response = getStringResponse(url);
 
