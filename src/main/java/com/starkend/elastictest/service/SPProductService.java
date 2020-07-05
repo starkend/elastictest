@@ -81,7 +81,6 @@ public class SPProductService {
 
     }
 
-
     private Ingredient processIngredientResponse(HttpEntity<String> response) {
         Ingredient ingredient;
 
@@ -106,7 +105,6 @@ public class SPProductService {
         return headers;
     }
 
-
     private HttpEntity<String> getStringResponse(String url) {
         HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
 
@@ -116,7 +114,4 @@ public class SPProductService {
                 entity,
                 String.class);
     }
-
-
-
 }

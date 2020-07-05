@@ -30,7 +30,6 @@ public class SPProductServiceTest {
         System.out.println(product);
     }
 
-
     @Test
     public void whenGetProductByUpc_thenSucceed() {
         final String WHOLE_GRAIN_CHEERIOS_UPC = "016000275287";
@@ -58,5 +57,4 @@ public class SPProductServiceTest {
         assertNotNull(ingredient);
         System.out.println(ingredient);
     }
-
 }
