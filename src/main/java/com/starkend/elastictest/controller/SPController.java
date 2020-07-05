@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/sp")
 public class SPController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(com.starkend.elastictest.controller.SPController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SPController.class);
 
     private final SPProductService spProductService;
 
