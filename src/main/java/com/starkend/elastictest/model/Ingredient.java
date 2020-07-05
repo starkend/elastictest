@@ -17,6 +17,7 @@ public class Ingredient {
     private String aisle;
     private String name;
     private String image;
+    private BigDecimal amount;
     private String consistency;
     private IngredientEstimatedCost estimatedCost;
     private List<String> meta;

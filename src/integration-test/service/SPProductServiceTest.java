@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
+
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
@@ -42,6 +44,16 @@ public class SPProductServiceTest {
     public void whenGetIngredientInfo_thenSucceed() {
         final String PINEAPPLE_INGREDIENT_ID = "9266";
         Ingredient ingredient = spProductService.getIngredientInfoById(PINEAPPLE_INGREDIENT_ID);
+
+        assertNotNull(ingredient);
+        System.out.println(ingredient);
+    }
+
+    @Test
+    public void whenGetIngredientInfoWithAmount_thenSucceed() {
+        final String PINEAPPLE_INGREDIENT_ID = "9266";
+        final BigDecimal AMOUNT = new BigDecimal(1.0);
+        Ingredient ingredient = spProductService.getIngredientInfoByIdWithAmount(PINEAPPLE_INGREDIENT_ID, AMOUNT);
 
         assertNotNull(ingredient);
         System.out.println(ingredient);

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @Service
 public class SPProductService {
@@ -29,7 +30,7 @@ public class SPProductService {
     }
 
     public Product getProductById(Long productId) {
-        String url = BASE_URL + "/food/products/" + productId + API_URL_COMPONENT;
+        String url = BASE_URL + "/food/products/" + productId + "?" + API_URL_COMPONENT;
 
         System.out.println(url);
         HttpEntity<String> response = getStringResponse(url);
@@ -47,7 +48,15 @@ public class SPProductService {
     }
 
     public Ingredient getIngredientInfoById(String ingredientId) {
-        String url = BASE_URL + "/food/ingredients/" + ingredientId + "/information" + API_URL_COMPONENT;
+        String url = BASE_URL + "/food/ingredients/" + ingredientId + "/information?" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processIngredientResponse(response);
+    }
+
+    public Ingredient getIngredientInfoByIdWithAmount(String ingredientId, BigDecimal amount) {
+        String url = BASE_URL + "/food/ingredients/" + ingredientId + "/information?amount=" + amount + "&" + API_URL_COMPONENT;
         System.out.println(url);
         HttpEntity<String> response = getStringResponse(url);
 
@@ -107,6 +116,7 @@ public class SPProductService {
                 entity,
                 String.class);
     }
+
 
 
 }
