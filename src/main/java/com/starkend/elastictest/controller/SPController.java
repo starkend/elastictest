@@ -3,7 +3,6 @@ package com.starkend.elastictest.controller;
 import com.starkend.elastictest.model.Ingredient;
 import com.starkend.elastictest.model.Product;
 import com.starkend.elastictest.service.SPProductService;
-import io.swagger.models.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
