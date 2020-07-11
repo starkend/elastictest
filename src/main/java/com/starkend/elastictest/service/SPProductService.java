@@ -39,7 +39,7 @@ public class SPProductService {
     }
 
     public Product getProductByUpc(String upc) {
-        String url = BASE_URL + "/food/products/upc/" + upc + API_URL_COMPONENT;
+        String url = BASE_URL + "/food/products/upc/" + upc + "?" + API_URL_COMPONENT;
 
         System.out.println(url);
         HttpEntity<String> response = getStringResponse(url);

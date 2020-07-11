@@ -3,6 +3,7 @@ package com.starkend.elastictest.controller;
 import com.starkend.elastictest.model.Ingredient;
 import com.starkend.elastictest.model.Product;
 import com.starkend.elastictest.service.SPProductService;
+import io.swagger.models.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,11 @@ public class SPController {
     @GetMapping("/product")
     public ResponseEntity<Product> getProduct(@RequestParam String prodId) {
         return new ResponseEntity<>(spProductService.getProductById(Long.valueOf(prodId)), HttpStatus.OK);
+    }
+
+    @GetMapping("/productByUpc")
+    public ResponseEntity<Product> getProductByUpc(@RequestParam String upc) {
+        return new ResponseEntity<>(spProductService.getProductByUpc(upc), HttpStatus.OK);
     }
 
     @GetMapping("/ingredient")
