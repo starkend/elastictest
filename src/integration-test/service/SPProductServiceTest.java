@@ -2,6 +2,7 @@ package service;
 
 import com.starkend.elastictest.ElastictestApplication;
 import com.starkend.elastictest.model.Ingredient;
+import com.starkend.elastictest.model.IngredientSubtitutes;
 import com.starkend.elastictest.model.Product;
 import com.starkend.elastictest.service.SPProductService;
 import org.junit.Test;
@@ -56,5 +57,14 @@ public class SPProductServiceTest {
 
         assertNotNull(ingredient);
         System.out.println(ingredient);
+    }
+
+    @Test
+    public void whenGetIngredientSubstitutes_thenSucceed() {
+        final String INGREDIENT_BUTTER = "butter";
+        IngredientSubtitutes ingredientSubtitute = spProductService.getIngredientSubtitutes(INGREDIENT_BUTTER);
+
+        assertNotNull(ingredientSubtitute);
+        System.out.println(ingredientSubtitute);
     }
 }
