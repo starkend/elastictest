@@ -1,6 +1,7 @@
 package com.starkend.elastictest.controller;
 
 import com.starkend.elastictest.model.Ingredient;
+import com.starkend.elastictest.model.IngredientSubtitutes;
 import com.starkend.elastictest.model.Product;
 import com.starkend.elastictest.service.SPProductService;
 import org.slf4j.Logger;
@@ -44,5 +45,10 @@ public class SPController {
     @GetMapping("/ingredientWithAmount")
     public ResponseEntity<Ingredient> getIngredientByIdAndAmount(@RequestParam String ingredientId, @RequestParam String amount) {
         return new ResponseEntity<>(spProductService.getIngredientInfoByIdWithAmount(ingredientId, new BigDecimal(amount)), HttpStatus.OK);
+    }
+
+    @GetMapping("/ingredientSubstitutes")
+    public ResponseEntity<IngredientSubtitutes> getIngredientSubstitutes(@RequestParam String ingredient) {
+        return new ResponseEntity<>(spProductService.getIngredientSubtitutes(ingredient), HttpStatus.OK);
     }
 }
