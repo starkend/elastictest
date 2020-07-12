@@ -45,6 +45,4 @@ public class SPController {
     public ResponseEntity<Ingredient> getIngredientByIdAndAmount(@RequestParam String ingredientId, @RequestParam String amount) {
         return new ResponseEntity<>(spProductService.getIngredientInfoByIdWithAmount(ingredientId, new BigDecimal(amount)), HttpStatus.OK);
     }
-
-
 }
