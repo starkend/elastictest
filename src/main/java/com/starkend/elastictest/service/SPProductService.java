@@ -1,7 +1,10 @@
 package com.starkend.elastictest.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starkend.elastictest.model.*;
+import com.starkend.elastictest.model.Ingredient;
+import com.starkend.elastictest.model.IngredientSubtitutes;
+import com.starkend.elastictest.model.Product;
+import com.starkend.elastictest.model.SearchProducts;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 public class SPProductService {
