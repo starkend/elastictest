@@ -4,6 +4,7 @@ import com.starkend.elastictest.ElastictestApplication;
 import com.starkend.elastictest.model.Ingredient;
 import com.starkend.elastictest.model.IngredientSubtitutes;
 import com.starkend.elastictest.model.Product;
+import com.starkend.elastictest.model.SearchProducts;
 import com.starkend.elastictest.service.SPProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
@@ -66,5 +69,14 @@ public class SPProductServiceTest {
 
         assertNotNull(ingredientSubtitute);
         System.out.println(ingredientSubtitute);
+    }
+
+    @Test
+    public void whenSearchProductsByQuery_thenSucceed() {
+        final String SEARCH_FOR_PIZZA = "pizza";
+        SearchProducts searchProducts = spProductService.getSearchProductsByQuery(SEARCH_FOR_PIZZA);
+
+        assertNotNull(searchProducts);
+        System.out.println(searchProducts);
     }
 }

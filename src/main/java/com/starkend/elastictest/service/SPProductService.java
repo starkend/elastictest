@@ -1,9 +1,7 @@
 package com.starkend.elastictest.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starkend.elastictest.model.Ingredient;
-import com.starkend.elastictest.model.IngredientSubtitutes;
-import com.starkend.elastictest.model.Product;
+import com.starkend.elastictest.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class SPProductService {
@@ -71,6 +70,33 @@ public class SPProductService {
 
         return processIngredientSubstitutesResponse(response);
     }
+
+    public SearchProducts getSearchProductsByQuery(String queryString) {
+        String url = BASE_URL + "/food/products/search?query=" + queryString + "&" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processSearchProductsResponse(response);
+    }
+
+    private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
+        SearchProducts searchProducts;
+
+        if (response != null) {
+            try {
+                searchProducts = objectMapper.readValue(response.getBody(), SearchProducts.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return searchProducts;
+
+    }
+
 
     private IngredientSubtitutes processIngredientSubstitutesResponse(HttpEntity<String> response) {
         IngredientSubtitutes ingredientSubtitutes;
@@ -140,6 +166,7 @@ public class SPProductService {
                 entity,
                 String.class);
     }
+
 }
 
 
