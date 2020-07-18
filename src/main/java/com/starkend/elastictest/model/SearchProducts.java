@@ -16,6 +16,4 @@ public class SearchProducts {
     private Long totalProducts;
     private Integer offset;
     private Short number;
-
-
 }
