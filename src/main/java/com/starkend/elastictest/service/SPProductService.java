@@ -84,7 +84,6 @@ public class SPProductService {
         HttpEntity<String> response = getStringResponse(url);
 
         return processAutocompleteProductSearchResponse(response);
-
     }
 
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
@@ -102,7 +101,6 @@ public class SPProductService {
         }
 
         return searchProducts;
-
     }
 
     private IngredientSubtitutes processIngredientSubstitutesResponse(HttpEntity<String> response) {
@@ -137,7 +135,6 @@ public class SPProductService {
         }
 
         return product;
-
     }
 
     private Ingredient processIngredientResponse(HttpEntity<String> response) {
@@ -155,7 +152,6 @@ public class SPProductService {
         }
 
         return ingredient;
-
     }
 
     private AutocompleteProductSearch processAutocompleteProductSearchResponse(HttpEntity<String> response) {
@@ -175,7 +171,6 @@ public class SPProductService {
         return autocompleteProductSearch;
     }
 
-
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -191,7 +186,6 @@ public class SPProductService {
                 entity,
                 String.class);
     }
-
 }
 
 
