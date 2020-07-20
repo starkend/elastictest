@@ -1,10 +1,7 @@
 package com.starkend.elastictest.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starkend.elastictest.model.Ingredient;
-import com.starkend.elastictest.model.IngredientSubtitutes;
-import com.starkend.elastictest.model.Product;
-import com.starkend.elastictest.model.SearchProducts;
+import com.starkend.elastictest.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -81,6 +78,15 @@ public class SPProductService {
         return processSearchProductsResponse(response);
     }
 
+    public AutocompleteProductSearch getAutocompleteProductSearch(String queryString, Integer number) {
+        String url = BASE_URL + "/food/products/suggest?query=" + queryString + "&" + "number=" + number + "&" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processAutocompleteProductSearchResponse(response);
+
+    }
+
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -152,6 +158,24 @@ public class SPProductService {
 
     }
 
+    private AutocompleteProductSearch processAutocompleteProductSearchResponse(HttpEntity<String> response) {
+        AutocompleteProductSearch autocompleteProductSearch;
+
+        if (response != null) {
+            try {
+                autocompleteProductSearch = objectMapper.readValue(response.getBody(), AutocompleteProductSearch.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return autocompleteProductSearch;
+    }
+
+
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -167,6 +191,7 @@ public class SPProductService {
                 entity,
                 String.class);
     }
+
 }
 
 

@@ -1,10 +1,7 @@
 package service;
 
 import com.starkend.elastictest.ElastictestApplication;
-import com.starkend.elastictest.model.Ingredient;
-import com.starkend.elastictest.model.IngredientSubtitutes;
-import com.starkend.elastictest.model.Product;
-import com.starkend.elastictest.model.SearchProducts;
+import com.starkend.elastictest.model.*;
 import com.starkend.elastictest.service.SPProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -76,5 +73,16 @@ public class SPProductServiceTest {
 
         assertNotNull(searchProducts);
         System.out.println(searchProducts);
+    }
+
+    @Test
+    public void whenAutocompleteProductSearch_thenSucceed() {
+        final String SEARCH_QUERY_PARTIAL = "chicke";
+        final Integer NUMBER_2 = 2;
+
+        AutocompleteProductSearch autocompleteProductSearch = spProductService.getAutocompleteProductSearch(SEARCH_QUERY_PARTIAL, NUMBER_2);
+
+        assertNotNull(autocompleteProductSearch);
+        System.out.println(autocompleteProductSearch);
     }
 }
