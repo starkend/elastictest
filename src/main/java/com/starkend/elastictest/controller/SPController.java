@@ -1,9 +1,6 @@
 package com.starkend.elastictest.controller;
 
-import com.starkend.elastictest.model.Ingredient;
-import com.starkend.elastictest.model.IngredientSubtitutes;
-import com.starkend.elastictest.model.Product;
-import com.starkend.elastictest.model.SearchProducts;
+import com.starkend.elastictest.model.*;
 import com.starkend.elastictest.service.SPProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,5 +53,10 @@ public class SPController {
     @GetMapping("/productSearch")
     public ResponseEntity<SearchProducts> getSearchProduct(@RequestParam String queryString) {
         return new ResponseEntity<>(spProductService.getSearchProductsByQuery(queryString), HttpStatus.OK);
+    }
+
+    @GetMapping("/partialProductSearch")
+    public ResponseEntity<AutocompleteProductSearch> getAutocompleteProductSearch(@RequestParam String queryString, @RequestParam String number) {
+        return new ResponseEntity<>(spProductService.getAutocompleteProductSearch(queryString, Integer.valueOf(number)), HttpStatus.OK);
     }
 }
