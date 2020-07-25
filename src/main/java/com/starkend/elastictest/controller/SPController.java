@@ -59,4 +59,9 @@ public class SPController {
     public ResponseEntity<AutocompleteProductSearch> getAutocompleteProductSearch(@RequestParam String queryString, @RequestParam String number) {
         return new ResponseEntity<>(spProductService.getAutocompleteProductSearch(queryString, Integer.valueOf(number)), HttpStatus.OK);
     }
+
+    @GetMapping("/ingredientSubstitutesById")
+    public ResponseEntity<IngredientSubtitutes> getIngredientSubstitutesById(@RequestParam String ingredientId) {
+        return new ResponseEntity<>(spProductService.getIngredientSubtitutesById(ingredientId), HttpStatus.OK);
+    }
 }
