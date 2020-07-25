@@ -86,6 +86,15 @@ public class SPProductService {
         return processAutocompleteProductSearchResponse(response);
     }
 
+    public IngredientSubtitutes getIngredientSubtitutesById(String ingredientId) {
+        String url = BASE_URL + "/food/ingredients/" + ingredientId + "/substitutes" + "?" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processIngredientSubstitutesResponse(response);
+    }
+
+
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -186,6 +195,7 @@ public class SPProductService {
                 entity,
                 String.class);
     }
+
 }
 
 

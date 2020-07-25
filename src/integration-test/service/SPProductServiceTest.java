@@ -85,4 +85,13 @@ public class SPProductServiceTest {
         assertNotNull(autocompleteProductSearch);
         System.out.println(autocompleteProductSearch);
     }
+
+    @Test
+    public void whenGetIngredientSubstitutesById_thenSucceed() {
+        final String INGREDIENT_BUTTER_ID = "1001";
+        IngredientSubtitutes ingredientSubtitutes = spProductService.getIngredientSubtitutesById(INGREDIENT_BUTTER_ID);
+
+        assertNotNull(ingredientSubtitutes);
+        System.out.println(ingredientSubtitutes);
+    }
 }
