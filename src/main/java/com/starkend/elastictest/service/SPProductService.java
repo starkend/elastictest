@@ -94,7 +94,6 @@ public class SPProductService {
         return processIngredientSubstitutesResponse(response);
     }
 
-
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -195,7 +194,6 @@ public class SPProductService {
                 entity,
                 String.class);
     }
-
 }
 
 
