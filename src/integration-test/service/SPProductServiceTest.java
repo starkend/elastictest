@@ -94,4 +94,13 @@ public class SPProductServiceTest {
         assertNotNull(ingredientSubtitutes);
         System.out.println(ingredientSubtitutes);
     }
+
+    @Test
+    public void whenGetRecipeById_thenSucceed() {
+        final String PASTA_WITH_STUFF_RECIPE_ID = "716429";
+        Recipe recipe = spProductService.getRecipeById(PASTA_WITH_STUFF_RECIPE_ID);
+
+        assertNotNull(recipe);
+        System.out.println(recipe);
+    }
 }

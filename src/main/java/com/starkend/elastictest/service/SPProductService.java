@@ -94,6 +94,16 @@ public class SPProductService {
         return processIngredientSubstitutesResponse(response);
     }
 
+    public Recipe getRecipeById(String recipeId) {
+        String url = BASE_URL + "/recipes/" + recipeId + "/information" + "?" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processRecipeResponse(response);
+    }
+
+
+
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -179,6 +189,24 @@ public class SPProductService {
         return autocompleteProductSearch;
     }
 
+
+    private Recipe processRecipeResponse(HttpEntity<String> response) {
+        Recipe recipe;
+
+        if (response != null) {
+            try {
+                recipe = objectMapper.readValue(response.getBody(), Recipe.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return recipe;
+    }
+
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -194,6 +222,8 @@ public class SPProductService {
                 entity,
                 String.class);
     }
+
+
 }
 
 
