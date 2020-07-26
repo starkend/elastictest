@@ -28,4 +28,5 @@ public class Ingredient {
     private Long unitLong;
     private Short unitShort;
     private List<String> possibleUnits;
+    private Measures measures;
 }
