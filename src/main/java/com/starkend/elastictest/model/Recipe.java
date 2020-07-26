@@ -45,9 +45,7 @@ public class Recipe {
     private Boolean whole30;
     private Integer weightWatcherSmartPoints;
     private List<String> dishTypes;
-    //private List<Ingredient> extendedIngredients;
+    private List<Ingredient> extendedIngredients;
     private String summary;
     //private List winePairing;
-
-
 }

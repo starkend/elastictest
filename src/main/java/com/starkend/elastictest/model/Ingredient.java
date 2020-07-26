@@ -24,9 +24,9 @@ public class Ingredient {
     private String original;
     private String originalName;
     private List<String> shoppingListUnits;
-    private BigDecimal unit;
-    private Long unitLong;
-    private Short unitShort;
+    private String unit;
+    private String unitLong;
+    private String unitShort;
     private List<String> possibleUnits;
     private Measures measures;
 }
