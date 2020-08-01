@@ -102,8 +102,6 @@ public class SPProductService {
         return processRecipeResponse(response);
     }
 
-
-
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
