@@ -47,5 +47,5 @@ public class Recipe {
     private List<String> dishTypes;
     private List<Ingredient> extendedIngredients;
     private String summary;
-    //private List winePairing;
+    private WinePairing winePairing;
 }
