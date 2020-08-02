@@ -111,7 +111,7 @@ public class SPProductServiceTest {
         final String RECIPE_ID_1 = "716429";
         final String RECIPE_ID_2 = "715538";
         List<String> recipeIds = new ArrayList<>();
-//        recipeIds.add(RECIPE_ID_1);
+        recipeIds.add(RECIPE_ID_1);
         recipeIds.add(RECIPE_ID_2);
         List<Recipe> recipes = spProductService.getRecipeByIdBulk(recipeIds);
 

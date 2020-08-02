@@ -2,7 +2,6 @@ package com.starkend.elastictest.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.starkend.elastictest.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -116,7 +115,6 @@ public class SPProductService {
         return processBulkRecipeResponse(response);
     }
 
-
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -225,7 +223,8 @@ public class SPProductService {
 
         if (response != null) {
             try {
-                recipes = objectMapper.readValue(response.getBody(), new TypeReference<List<Recipe>>(){});
+                recipes = objectMapper.readValue(response.getBody(), new TypeReference<List<Recipe>>() {
+                });
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
