@@ -16,6 +16,7 @@ public class Ingredient {
     private Long id;
     private String aisle;
     private String name;
+    private String localizedName;
     private String image;
     private BigDecimal amount;
     private String consistency;
