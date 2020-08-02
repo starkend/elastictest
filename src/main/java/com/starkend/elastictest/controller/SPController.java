@@ -64,4 +64,9 @@ public class SPController {
     public ResponseEntity<IngredientSubtitutes> getIngredientSubstitutesById(@RequestParam String ingredientId) {
         return new ResponseEntity<>(spProductService.getIngredientSubtitutesById(ingredientId), HttpStatus.OK);
     }
+
+    @GetMapping("/recipeById")
+    public ResponseEntity<Recipe> getRecipeById(@RequestParam String recipeId) {
+        return new ResponseEntity<>(spProductService.getRecipeById(recipeId), HttpStatus.OK);
+    }
 }
