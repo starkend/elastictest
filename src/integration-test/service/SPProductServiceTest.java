@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -103,4 +105,19 @@ public class SPProductServiceTest {
         assertNotNull(recipe);
         System.out.println(recipe);
     }
+
+    @Test
+    public void whenGetRecipeByIdBulk_thenSucceed() {
+        final String RECIPE_ID_1 = "716429";
+        final String RECIPE_ID_2 = "715538";
+        List<String> recipeIds = new ArrayList<>();
+//        recipeIds.add(RECIPE_ID_1);
+        recipeIds.add(RECIPE_ID_2);
+        List<Recipe> recipes = spProductService.getRecipeByIdBulk(recipeIds);
+
+        assertNotNull(recipes);
+        System.out.println(recipes);
+    }
+
+
 }

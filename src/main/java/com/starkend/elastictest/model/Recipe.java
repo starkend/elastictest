@@ -25,7 +25,7 @@ public class Recipe {
     private String spoonacularSourceUrl;
     private Integer aggregateLikes;
     private BigDecimal healthScore;
-    private List<String> analyzedInstructions;
+//    private List<String> analyzedInstructions;
     private Boolean cheap;
     private String creditsText;
     private List<String> cuisines;

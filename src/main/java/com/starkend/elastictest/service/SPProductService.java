@@ -1,6 +1,8 @@
 package com.starkend.elastictest.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.starkend.elastictest.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class SPProductService {
@@ -101,6 +104,18 @@ public class SPProductService {
 
         return processRecipeResponse(response);
     }
+
+    public List<Recipe> getRecipeByIdBulk(List<String> recipeIds) {
+
+        String recipeIdsUrlComponent = String.join(",", recipeIds);
+
+        String url = BASE_URL + "/recipes/informationBulk?ids=" + recipeIdsUrlComponent + "&" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processBulkRecipeResponse(response);
+    }
+
 
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
@@ -204,6 +219,24 @@ public class SPProductService {
 
         return recipe;
     }
+
+    private List<Recipe> processBulkRecipeResponse(HttpEntity<String> response) {
+        List<Recipe> recipes;
+
+        if (response != null) {
+            try {
+                recipes = objectMapper.readValue(response.getBody(), new TypeReference<List<Recipe>>(){});
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return recipes;
+    }
+
 
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();
