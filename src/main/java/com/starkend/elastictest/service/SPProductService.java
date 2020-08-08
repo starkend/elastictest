@@ -112,8 +112,18 @@ public class SPProductService {
         System.out.println(url);
         HttpEntity<String> response = getStringResponse(url);
 
-        return processBulkRecipeResponse(response);
+        return processRecipesResponse(response);
     }
+
+    public List<Recipe> getRecipesSimilar(String recipeId) {
+        String url = BASE_URL + "/recipes/" + recipeId + "/similar" + "?" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processRecipesResponse(response);
+    }
+
+
 
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
@@ -218,7 +228,7 @@ public class SPProductService {
         return recipe;
     }
 
-    private List<Recipe> processBulkRecipeResponse(HttpEntity<String> response) {
+    private List<Recipe> processRecipesResponse(HttpEntity<String> response) {
         List<Recipe> recipes;
 
         if (response != null) {
@@ -235,7 +245,6 @@ public class SPProductService {
 
         return recipes;
     }
-
 
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();

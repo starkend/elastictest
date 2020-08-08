@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
@@ -119,5 +120,14 @@ public class SPProductServiceTest {
         System.out.println(recipes);
     }
 
+    @Test
+    public void whenGetRecipesSimilar_thenSucceed() {
+        final String RECIPE = "715538";
+        List<Recipe> recipes = spProductService.getRecipesSimilar(RECIPE);
+
+        assertNotNull(recipes);
+        assertFalse(recipes.isEmpty());
+        System.out.println(recipes);
+    }
 
 }
