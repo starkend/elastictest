@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/sp")
@@ -69,4 +70,11 @@ public class SPController {
     public ResponseEntity<Recipe> getRecipeById(@RequestParam String recipeId) {
         return new ResponseEntity<>(spProductService.getRecipeById(recipeId), HttpStatus.OK);
     }
+
+    @GetMapping("/similarRecipes")
+    public ResponseEntity<List<Recipe>> getSimilarRecipes(@RequestParam String recipeId) {
+        return new ResponseEntity<>(spProductService.getSimilarRecipes(recipeId), HttpStatus.OK);
+    }
+
+
 }

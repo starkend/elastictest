@@ -115,7 +115,7 @@ public class SPProductService {
         return processRecipesResponse(response);
     }
 
-    public List<Recipe> getRecipesSimilar(String recipeId) {
+    public List<Recipe> getSimilarRecipes(String recipeId) {
         String url = BASE_URL + "/recipes/" + recipeId + "/similar" + "?" + API_URL_COMPONENT;
         System.out.println(url);
         HttpEntity<String> response = getStringResponse(url);

@@ -123,7 +123,7 @@ public class SPProductServiceTest {
     @Test
     public void whenGetRecipesSimilar_thenSucceed() {
         final String RECIPE = "715538";
-        List<Recipe> recipes = spProductService.getRecipesSimilar(RECIPE);
+        List<Recipe> recipes = spProductService.getSimilarRecipes(RECIPE);
 
         assertNotNull(recipes);
         assertFalse(recipes.isEmpty());
