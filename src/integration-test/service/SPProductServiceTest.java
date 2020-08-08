@@ -129,5 +129,4 @@ public class SPProductServiceTest {
         assertFalse(recipes.isEmpty());
         System.out.println(recipes);
     }
-
 }
