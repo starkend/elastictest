@@ -135,7 +135,6 @@ public class SPProductServiceTest {
         Recipes recipes = spProductService.getRandomRecipes();
 
         assertNotNull(recipes);
-
         System.out.println(recipes);
     }
 }

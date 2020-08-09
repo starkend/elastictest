@@ -129,9 +129,7 @@ public class SPProductService {
         HttpEntity<String> response = getStringResponse(url);
 
         return processRandomRecipesResponse(response);
-
     }
-
 
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
@@ -218,7 +216,6 @@ public class SPProductService {
         return autocompleteProductSearch;
     }
 
-
     private Recipe processRecipeResponse(HttpEntity<String> response) {
         Recipe recipe;
 
@@ -287,7 +284,6 @@ public class SPProductService {
                 entity,
                 String.class);
     }
-
 }
 
 
