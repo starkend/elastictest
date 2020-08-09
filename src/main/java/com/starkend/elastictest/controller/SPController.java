@@ -76,5 +76,8 @@ public class SPController {
         return new ResponseEntity<>(spProductService.getSimilarRecipes(recipeId), HttpStatus.OK);
     }
 
-
+    @GetMapping("/randomRecipes")
+    public ResponseEntity<Recipes> getSimilarRecipes() {
+        return new ResponseEntity<>(spProductService.getRandomRecipes(), HttpStatus.OK);
+    }
 }

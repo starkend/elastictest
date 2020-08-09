@@ -15,7 +15,7 @@ public class ProductMatch {
     private Long id;
     private String title;
     private String description;
-    private BigDecimal price;
+    private String price;
     private String imageUrl;
     private BigDecimal averageRating;
     private BigDecimal ratingCount;
