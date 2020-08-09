@@ -129,4 +129,13 @@ public class SPProductServiceTest {
         assertFalse(recipes.isEmpty());
         System.out.println(recipes);
     }
+
+    @Test
+    public void whenGetRecipesRandom_thenSucceed() {
+        Recipes recipes = spProductService.getRandomRecipes();
+
+        assertNotNull(recipes);
+
+        System.out.println(recipes);
+    }
 }
