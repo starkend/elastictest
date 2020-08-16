@@ -139,8 +139,6 @@ public class SPProductService {
         return processAnalyzedInstructionsResponse(response);
     }
 
-
-
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -297,7 +295,6 @@ public class SPProductService {
         return analyzedInstructions;
     }
 
-
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -313,7 +310,6 @@ public class SPProductService {
                 entity,
                 String.class);
     }
-
 }
 
 
