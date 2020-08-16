@@ -80,4 +80,9 @@ public class SPController {
     public ResponseEntity<Recipes> getSimilarRecipes() {
         return new ResponseEntity<>(spProductService.getRandomRecipes(), HttpStatus.OK);
     }
+
+    @GetMapping("/analyzedInstructions")
+    public ResponseEntity<List<AnalyzedInstruction>> getAnalyzedInstructions(@RequestParam String id) {
+        return new ResponseEntity<>(spProductService.getAnalyzedInstructions(id), HttpStatus.OK);
+    }
 }
