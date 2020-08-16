@@ -5,14 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Equipment {
-    private Long id;
-    private String name;
-    private String localizedName;
-    private String image;
-    private Temperature temperature;
+public class Temperature {
+    private BigDecimal number;
+    private String unit;
 }

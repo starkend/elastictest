@@ -137,4 +137,15 @@ public class SPProductServiceTest {
         assertNotNull(recipes);
         System.out.println(recipes);
     }
+
+    @Test
+    public void whenGetAnalyzedInstructions_thenSucceed() {
+        final String ID = "324694";
+        List<AnalyzedInstruction> analyzedInstructions = spProductService.getAnalyzedInstructions(ID);
+
+        assertNotNull(analyzedInstructions);
+        assertFalse(analyzedInstructions.isEmpty());
+
+        System.out.println(analyzedInstructions);
+    }
 }

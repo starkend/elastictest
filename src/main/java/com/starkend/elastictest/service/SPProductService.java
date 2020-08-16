@@ -131,6 +131,16 @@ public class SPProductService {
         return processRandomRecipesResponse(response);
     }
 
+    public List<AnalyzedInstruction> getAnalyzedInstructions(String id) {
+        String url = BASE_URL + "/recipes/" + id + "/analyzedInstructions" + "?" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processAnalyzedInstructionsResponse(response);
+    }
+
+
+
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -269,6 +279,25 @@ public class SPProductService {
         return recipes;
     }
 
+    private List<AnalyzedInstruction> processAnalyzedInstructionsResponse(HttpEntity<String> response) {
+        List<AnalyzedInstruction> analyzedInstructions;
+
+        if (response != null) {
+            try {
+                analyzedInstructions = objectMapper.readValue(response.getBody(), new TypeReference<List<AnalyzedInstruction>>() {
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return analyzedInstructions;
+    }
+
+
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -284,6 +313,7 @@ public class SPProductService {
                 entity,
                 String.class);
     }
+
 }
 
 
