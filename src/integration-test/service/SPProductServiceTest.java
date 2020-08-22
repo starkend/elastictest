@@ -148,4 +148,14 @@ public class SPProductServiceTest {
 
         System.out.println(analyzedInstructions);
     }
+
+    @Test
+    public void whenGetMenuItemInfoById_thenSucceed() {
+        final String ID = "424571";
+        MenuItem menuItem = spProductService.getMenuItemById(ID);
+
+        assertNotNull(menuItem);
+        System.out.println(menuItem);
+    }
 }
+

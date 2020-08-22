@@ -139,6 +139,16 @@ public class SPProductService {
         return processAnalyzedInstructionsResponse(response);
     }
 
+    public MenuItem getMenuItemById(String id) {
+        String url = BASE_URL + "/food/menuItems/" + id + "?" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processMenuItemResponse(response);
+    }
+
+
+
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -295,6 +305,25 @@ public class SPProductService {
         return analyzedInstructions;
     }
 
+    private MenuItem processMenuItemResponse(HttpEntity<String> response) {
+        MenuItem menuItem;
+
+        if (response != null) {
+            try {
+                menuItem = objectMapper.readValue(response.getBody(), MenuItem.class);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return menuItem;
+    }
+
+
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -310,6 +339,7 @@ public class SPProductService {
                 entity,
                 String.class);
     }
+
 }
 
 
