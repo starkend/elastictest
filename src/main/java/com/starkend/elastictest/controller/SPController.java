@@ -85,4 +85,11 @@ public class SPController {
     public ResponseEntity<List<AnalyzedInstruction>> getAnalyzedInstructions(@RequestParam String id) {
         return new ResponseEntity<>(spProductService.getAnalyzedInstructions(id), HttpStatus.OK);
     }
+
+    @GetMapping("/menuItemById")
+    public ResponseEntity<MenuItem> getMenuItemById(@RequestParam String id) {
+        return new ResponseEntity<>(spProductService.getMenuItemById(id), HttpStatus.OK);
+    }
+
+
 }
