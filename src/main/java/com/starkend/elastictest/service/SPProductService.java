@@ -105,7 +105,6 @@ public class SPProductService {
     }
 
     public List<Recipe> getRecipeByIdBulk(List<String> recipeIds) {
-
         String recipeIdsUrlComponent = String.join(",", recipeIds);
 
         String url = BASE_URL + "/recipes/informationBulk?ids=" + recipeIdsUrlComponent + "&" + API_URL_COMPONENT;
@@ -146,8 +145,6 @@ public class SPProductService {
 
         return processMenuItemResponse(response);
     }
-
-
 
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
@@ -323,7 +320,6 @@ public class SPProductService {
         return menuItem;
     }
 
-
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -339,7 +335,6 @@ public class SPProductService {
                 entity,
                 String.class);
     }
-
 }
 
 
