@@ -157,5 +157,16 @@ public class SPProductServiceTest {
         assertNotNull(menuItem);
         System.out.println(menuItem);
     }
+
+    @Test
+    public void whenAutocompleteIngredientSearch_thenSucceed() {
+        final String SEARCH_QUERY_PARTIAL = "appl";
+        final Integer NUMBER_5 = 5;
+
+        List<Ingredient> ingredients = spProductService.getAutocompleteIngredientSearch(SEARCH_QUERY_PARTIAL, NUMBER_5);
+
+        assertNotNull(ingredients);
+        System.out.println(ingredients);
+    }
 }
 

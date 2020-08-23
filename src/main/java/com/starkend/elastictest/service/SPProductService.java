@@ -146,6 +146,32 @@ public class SPProductService {
         return processMenuItemResponse(response);
     }
 
+    public List<Ingredient> getAutocompleteIngredientSearch(String queryString, Integer number) {
+        String url = BASE_URL + "/food/ingredients/autocomplete?query=" + queryString + "&" + "number=" + number + "&" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processAutocompleteIngredientResponse(response);
+    }
+
+    private List<Ingredient> processAutocompleteIngredientResponse(HttpEntity<String> response) {
+        List<Ingredient> ingredients;
+
+        if (response != null) {
+            try {
+                ingredients = objectMapper.readValue(response.getBody(), new TypeReference<List<Ingredient>>() {
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return ingredients;
+    }
+
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -335,6 +361,8 @@ public class SPProductService {
                 entity,
                 String.class);
     }
+
+
 }
 
 
