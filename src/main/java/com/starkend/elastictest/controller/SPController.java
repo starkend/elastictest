@@ -91,5 +91,8 @@ public class SPController {
         return new ResponseEntity<>(spProductService.getMenuItemById(id), HttpStatus.OK);
     }
 
-
+    @GetMapping("/partialIngredientSearch")
+    public ResponseEntity<List<Ingredient>> getAutocompleteIngredientSearch(@RequestParam String queryString, @RequestParam String number) {
+        return new ResponseEntity<>(spProductService.getAutocompleteIngredientSearch(queryString, Integer.valueOf(number)), HttpStatus.OK);
+    }
 }
