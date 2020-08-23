@@ -166,6 +166,7 @@ public class SPProductServiceTest {
         List<Ingredient> ingredients = spProductService.getAutocompleteIngredientSearch(SEARCH_QUERY_PARTIAL, NUMBER_5);
 
         assertNotNull(ingredients);
+        assertFalse(ingredients.isEmpty());
         System.out.println(ingredients);
     }
 }

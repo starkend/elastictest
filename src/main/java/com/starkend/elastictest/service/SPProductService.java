@@ -154,24 +154,6 @@ public class SPProductService {
         return processAutocompleteIngredientResponse(response);
     }
 
-    private List<Ingredient> processAutocompleteIngredientResponse(HttpEntity<String> response) {
-        List<Ingredient> ingredients;
-
-        if (response != null) {
-            try {
-                ingredients = objectMapper.readValue(response.getBody(), new TypeReference<List<Ingredient>>() {
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-
-        return ingredients;
-    }
-
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -344,6 +326,24 @@ public class SPProductService {
         }
 
         return menuItem;
+    }
+
+    private List<Ingredient> processAutocompleteIngredientResponse(HttpEntity<String> response) {
+        List<Ingredient> ingredients;
+
+        if (response != null) {
+            try {
+                ingredients = objectMapper.readValue(response.getBody(), new TypeReference<List<Ingredient>>() {
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return ingredients;
     }
 
     private HttpHeaders buildHeaders() {
