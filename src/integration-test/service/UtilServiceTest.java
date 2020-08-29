@@ -27,26 +27,26 @@ public class UtilServiceTest {
     @Autowired
     ProductService productService;
 
-    @Autowired
-    DatakickService datakickService;
+//    @Autowired
+//    DatakickService datakickService;
 
     @Test
     public void whenUtilServiceIsCreatedWithDependencies_thenSucceed() {
         assertNotNull(utilService);
     }
 
-    @Test
-    public void whenInsertSingleDatakickProductToElasticProductIndex_thenSucceed() {
-        List<ProductDto> productDtos = datakickService.getProductDtoList();
-        ProductDto productDto = productDtos.isEmpty() ? null : productDtos.get(0);
-        assertNotNull(productDto);
-
-        DKProduct savedDKProduct = utilService.insertDatakickProductToElasticIndex(productDto);
-        assertNotNull(savedDKProduct);
-
-        assertEquals(productDto.getGtin14(), savedDKProduct.getGtin14());
-
-        productService.deleteById(savedDKProduct.getId());
-
-    }
+//    @Test
+//    public void whenInsertSingleDatakickProductToElasticProductIndex_thenSucceed() {
+//        List<ProductDto> productDtos = datakickService.getProductDtoList();
+//        ProductDto productDto = productDtos.isEmpty() ? null : productDtos.get(0);
+//        assertNotNull(productDto);
+//
+//        DKProduct savedDKProduct = utilService.insertDatakickProductToElasticIndex(productDto);
+//        assertNotNull(savedDKProduct);
+//
+//        assertEquals(productDto.getGtin14(), savedDKProduct.getGtin14());
+//
+//        productService.deleteById(savedDKProduct.getId());
+//
+//    }
 }
