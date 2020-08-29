@@ -1,6 +1,6 @@
 package com.starkend.elastictest.controller;
 
-import com.starkend.elastictest.model.DKProduct;
+//import com.starkend.elastictest.model.DKProduct;
 import com.starkend.elastictest.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,27 +25,27 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/products")
-    public ResponseEntity<List<DKProduct>> getAllProducts() {
-        List<DKProduct> DKProductList = productService.getAllProducts();
-
-        LOG.info(DKProductList.toString());
-        return new ResponseEntity<>(DKProductList, HttpStatus.OK);
-    }
-
-    @GetMapping("/findProductsByName")
-    public ResponseEntity<List<DKProduct>> getProductsByName(@RequestParam String name) {
-        List<DKProduct> DKProductList = productService.findByName(name);
-
-        LOG.info(DKProductList.toString());
-        return new ResponseEntity<>(DKProductList, HttpStatus.OK);
-    }
-
-    @GetMapping("/findProductById")
-    public ResponseEntity<DKProduct> getProductById(@RequestParam String id) {
-        DKProduct DKProduct = productService.findById(id);
-
-        LOG.info(DKProduct.getName());
-        return new ResponseEntity<>(DKProduct, HttpStatus.OK);
-    }
+//    @GetMapping("/products")
+//    public ResponseEntity<List<DKProduct>> getAllProducts() {
+//        List<DKProduct> DKProductList = productService.getAllProducts();
+//
+//        LOG.info(DKProductList.toString());
+//        return new ResponseEntity<>(DKProductList, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/findProductsByName")
+//    public ResponseEntity<List<DKProduct>> getProductsByName(@RequestParam String name) {
+//        List<DKProduct> DKProductList = productService.findByName(name);
+//
+//        LOG.info(DKProductList.toString());
+//        return new ResponseEntity<>(DKProductList, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/findProductById")
+//    public ResponseEntity<DKProduct> getProductById(@RequestParam String id) {
+//        DKProduct DKProduct = productService.findById(id);
+//
+//        LOG.info(DKProduct.getName());
+//        return new ResponseEntity<>(DKProduct, HttpStatus.OK);
+//    }
 }

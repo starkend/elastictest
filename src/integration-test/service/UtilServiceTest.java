@@ -2,7 +2,7 @@ package service;
 
 import com.starkend.elastictest.ElastictestApplication;
 import com.starkend.elastictest.dto.ProductDto;
-import com.starkend.elastictest.model.DKProduct;
+//import com.starkend.elastictest.model.DKProduct;
 import com.starkend.elastictest.service.DatakickService;
 import com.starkend.elastictest.service.ProductService;
 import com.starkend.elastictest.service.UtilService;

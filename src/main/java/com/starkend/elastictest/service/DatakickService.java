@@ -1,7 +1,7 @@
 package com.starkend.elastictest.service;
 
 import com.starkend.elastictest.dto.ProductDto;
-import com.starkend.elastictest.model.DKProduct;
+//import com.starkend.elastictest.model.DKProduct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;

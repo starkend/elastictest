@@ -1,7 +1,7 @@
 package com.starkend.elastictest.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starkend.elastictest.model.DKProduct;
+//import com.starkend.elastictest.model.DKProduct;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -44,56 +44,56 @@ public class ProductRepository {
         this.restHighLevelClient = restHighLevelClient;
     }
 
-    public DKProduct insertProduct(DKProduct DKProduct) {
-        if (DKProduct.getId() == null) {
-            DKProduct.setId(UUID.randomUUID().toString());
-        }
-
-        Map attrMap = objectMapper.convertValue(DKProduct, Map.class);
-        IndexRequest indexRequest = new IndexRequest(INDEX)
-                .id(DKProduct.getId())
-                .source(attrMap);
-
-        IndexResponse response = null;
-        DocWriteResponse.Result result = null;
-
-        try {
-            response = restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
-            result = response.getResult();
-        } catch (ElasticsearchException e) {
-            LOG.error(e.getDetailedMessage());
-        } catch (IOException ioe) {
-            LOG.error(ioe.getLocalizedMessage());
-        }
-
-        switch (result) {
-            case CREATED:
-            case UPDATED:
-                return DKProduct;
-            default:
-                LOG.error("Response result type not CREATED or UPDATED as expected");
-                return null;
-        }
-    }
-
-    public List<DKProduct> findByName(String name) {
-        SearchRequest searchRequest = new SearchRequest(INDEX);
-        final String PRODUCT_NAME_FIELD = "name";
-        QueryBuilder matchQueryBuilder = QueryBuilders.matchQuery(PRODUCT_NAME_FIELD, name);
-        SearchSourceBuilder searchSourceBuilder = getSearchSourceBuilder();
-        searchSourceBuilder.query(matchQueryBuilder);
-
-        searchRequest.source(searchSourceBuilder);
-
-        SearchResponse searchResponse = null;
-        try {
-            searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-        } catch (IOException e) {
-            LOG.error(e.getLocalizedMessage());
-        }
-
-        return processSearchResponse(searchResponse);
-    }
+//    public DKProduct insertProduct(DKProduct DKProduct) {
+//        if (DKProduct.getId() == null) {
+//            DKProduct.setId(UUID.randomUUID().toString());
+//        }
+//
+//        Map attrMap = objectMapper.convertValue(DKProduct, Map.class);
+//        IndexRequest indexRequest = new IndexRequest(INDEX)
+//                .id(DKProduct.getId())
+//                .source(attrMap);
+//
+//        IndexResponse response = null;
+//        DocWriteResponse.Result result = null;
+//
+//        try {
+//            response = restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
+//            result = response.getResult();
+//        } catch (ElasticsearchException e) {
+//            LOG.error(e.getDetailedMessage());
+//        } catch (IOException ioe) {
+//            LOG.error(ioe.getLocalizedMessage());
+//        }
+//
+//        switch (result) {
+//            case CREATED:
+//            case UPDATED:
+//                return DKProduct;
+//            default:
+//                LOG.error("Response result type not CREATED or UPDATED as expected");
+//                return null;
+//        }
+//    }
+//
+//    public List<DKProduct> findByName(String name) {
+//        SearchRequest searchRequest = new SearchRequest(INDEX);
+//        final String PRODUCT_NAME_FIELD = "name";
+//        QueryBuilder matchQueryBuilder = QueryBuilders.matchQuery(PRODUCT_NAME_FIELD, name);
+//        SearchSourceBuilder searchSourceBuilder = getSearchSourceBuilder();
+//        searchSourceBuilder.query(matchQueryBuilder);
+//
+//        searchRequest.source(searchSourceBuilder);
+//
+//        SearchResponse searchResponse = null;
+//        try {
+//            searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+//        } catch (IOException e) {
+//            LOG.error(e.getLocalizedMessage());
+//        }
+//
+//        return processSearchResponse(searchResponse);
+//    }
 
 
     public boolean deleteById(String id) {
@@ -109,67 +109,67 @@ public class ProductRepository {
         return deleteResponse.getResult().equals(DocWriteResponse.Result.DELETED);
     }
 
-    public DKProduct findById(String id) {
-        GetRequest getRequest = new GetRequest(INDEX, id);
-
-        GetResponse getResponse = null;
-        try {
-            getResponse = restHighLevelClient.get(getRequest, RequestOptions.DEFAULT);
-        } catch (IOException e) {
-            LOG.error(e.getLocalizedMessage());
-        }
-
-        DKProduct DKProduct = null;
-        try {
-            DKProduct = objectMapper.readValue(getResponse.getSourceAsString(), DKProduct.class);
-        } catch (IOException e) {
-            LOG.error(e.getLocalizedMessage());
-        }
-
-        return DKProduct;
-    }
-
-    public List<DKProduct> getAllProducts() {
-        SearchRequest searchRequest = new SearchRequest(INDEX);
-        SearchSourceBuilder searchSourceBuilder = getSearchSourceBuilder();
-        searchSourceBuilder.query(QueryBuilders.matchAllQuery());
-        searchRequest.source(searchSourceBuilder);
-
-        SearchResponse searchResponse = null;
-
-        try {
-            searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-        } catch (IOException e) {
-            LOG.error(e.getLocalizedMessage());
-        }
-
-        return processSearchResponse(searchResponse);
-
-    }
-
-    public boolean bulkInsertProducts(List<DKProduct> insertDKProductList) {
-        BulkRequest bulkRequest = new BulkRequest();
-        boolean didAllSucceed = false;
-
-        for (DKProduct DKProduct : insertDKProductList) {
-            Map attrMap = objectMapper.convertValue(DKProduct, Map.class);
-            IndexRequest indexRequest = new IndexRequest(INDEX)
-                    .id(DKProduct.getId())
-                    .source(attrMap);
-            bulkRequest.add(indexRequest);
-        }
-
-        BulkResponse bulkResponse = null;
-        try {
-            bulkResponse = restHighLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);
-        } catch (IOException e) {
-            LOG.error(e.getLocalizedMessage());
-        }
-
-        didAllSucceed = !bulkResponse.hasFailures();
-
-        return didAllSucceed;
-    }
+//    public DKProduct findById(String id) {
+//        GetRequest getRequest = new GetRequest(INDEX, id);
+//
+//        GetResponse getResponse = null;
+//        try {
+//            getResponse = restHighLevelClient.get(getRequest, RequestOptions.DEFAULT);
+//        } catch (IOException e) {
+//            LOG.error(e.getLocalizedMessage());
+//        }
+//
+//        DKProduct DKProduct = null;
+//        try {
+//            DKProduct = objectMapper.readValue(getResponse.getSourceAsString(), DKProduct.class);
+//        } catch (IOException e) {
+//            LOG.error(e.getLocalizedMessage());
+//        }
+//
+//        return DKProduct;
+//    }
+//
+//    public List<DKProduct> getAllProducts() {
+//        SearchRequest searchRequest = new SearchRequest(INDEX);
+//        SearchSourceBuilder searchSourceBuilder = getSearchSourceBuilder();
+//        searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+//        searchRequest.source(searchSourceBuilder);
+//
+//        SearchResponse searchResponse = null;
+//
+//        try {
+//            searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+//        } catch (IOException e) {
+//            LOG.error(e.getLocalizedMessage());
+//        }
+//
+//        return processSearchResponse(searchResponse);
+//
+//    }
+//
+//    public boolean bulkInsertProducts(List<DKProduct> insertDKProductList) {
+//        BulkRequest bulkRequest = new BulkRequest();
+//        boolean didAllSucceed = false;
+//
+//        for (DKProduct DKProduct : insertDKProductList) {
+//            Map attrMap = objectMapper.convertValue(DKProduct, Map.class);
+//            IndexRequest indexRequest = new IndexRequest(INDEX)
+//                    .id(DKProduct.getId())
+//                    .source(attrMap);
+//            bulkRequest.add(indexRequest);
+//        }
+//
+//        BulkResponse bulkResponse = null;
+//        try {
+//            bulkResponse = restHighLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);
+//        } catch (IOException e) {
+//            LOG.error(e.getLocalizedMessage());
+//        }
+//
+//        didAllSucceed = !bulkResponse.hasFailures();
+//
+//        return didAllSucceed;
+//    }
 
     private SearchSourceBuilder getSearchSourceBuilder() {
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -177,26 +177,26 @@ public class ProductRepository {
         return searchSourceBuilder;
     }
 
-    private List<DKProduct> processSearchResponse(SearchResponse searchResponse) {
-        SearchHits hits = searchResponse.getHits();
-
-        if (hits == null) {
-            return new ArrayList<DKProduct>();
-        }
-
-        List<DKProduct> DKProductList = new ArrayList<>();
-
-        Arrays.stream(hits.getHits()).forEach(hit -> {
-            String source = hit.getSourceAsString();
-            try {
-                DKProduct DKProduct = objectMapper.readValue(source, DKProduct.class);
-                DKProductList.add(DKProduct);
-            } catch (IOException e) {
-                LOG.error(e.getLocalizedMessage());
-            }
-        });
-
-        return DKProductList;
-    }
+//    private List<DKProduct> processSearchResponse(SearchResponse searchResponse) {
+//        SearchHits hits = searchResponse.getHits();
+//
+//        if (hits == null) {
+//            return new ArrayList<DKProduct>();
+//        }
+//
+//        List<DKProduct> DKProductList = new ArrayList<>();
+//
+//        Arrays.stream(hits.getHits()).forEach(hit -> {
+//            String source = hit.getSourceAsString();
+//            try {
+//                DKProduct DKProduct = objectMapper.readValue(source, DKProduct.class);
+//                DKProductList.add(DKProduct);
+//            } catch (IOException e) {
+//                LOG.error(e.getLocalizedMessage());
+//            }
+//        });
+//
+//        return DKProductList;
+//    }
 
 }
