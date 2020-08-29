@@ -17,21 +17,21 @@ import java.util.List;
 @RequestMapping("/dk")
 public class DatakickController {
 
-    private static Logger LOG = LoggerFactory.getLogger(DatakickController.class);
-
-    private DatakickService datakickService;
-
-    public DatakickController(DatakickService datakickService) {
-        this.datakickService = datakickService;
-    }
-
-    @GetMapping("/products")
-    public ResponseEntity<List<ProductDto>> getProducts() {
-        return new ResponseEntity<>(datakickService.getProductDtoList(), HttpStatus.OK);
-    }
-
-    @GetMapping("/productQuery")
-    public ResponseEntity<List<ProductDto>> getProductsByQuery(@RequestParam String query) {
-        return new ResponseEntity<>(datakickService.getProductDtoListByQuery(query), HttpStatus.OK);
-    }
+//    private static Logger LOG = LoggerFactory.getLogger(DatakickController.class);
+//
+//    private DatakickService datakickService;
+//
+//    public DatakickController(DatakickService datakickService) {
+//        this.datakickService = datakickService;
+//    }
+//
+//    @GetMapping("/products")
+//    public ResponseEntity<List<ProductDto>> getProducts() {
+//        return new ResponseEntity<>(datakickService.getProductDtoList(), HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/productQuery")
+//    public ResponseEntity<List<ProductDto>> getProductsByQuery(@RequestParam String query) {
+//        return new ResponseEntity<>(datakickService.getProductDtoListByQuery(query), HttpStatus.OK);
+//    }
 }
