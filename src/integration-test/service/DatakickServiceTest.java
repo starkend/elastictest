@@ -19,43 +19,43 @@ import static org.junit.Assert.assertNotNull;
 @SpringBootTest(classes = ElastictestApplication.class)
 public class DatakickServiceTest {
 
-    @Autowired
-    DatakickService datakickService;
-
-    @Test
-    public void whenGetProductDtoList_thenReturnPopulatedDtoList() {
-        List<ProductDto> productList = datakickService.getProductDtoList();
-
-        assertNotNull(productList);
-        assertFalse(productList.isEmpty());
-
-        productList.forEach(p -> System.out.println(p.getName()));
-    }
-
-    @Test
-    public void whenSearchBySingleWord_thenReturnPopulatedDtoList() {
-        String queryString = "peanut";
-        List<ProductDto> productList = datakickService.getProductDtoListByQuery(queryString);
-
-        assertNotNull(productList);
-        assertFalse(productList.isEmpty());
-    }
-
-    @Test
-    public void whenSearchByMultipleWords_thenReturnPopulatedDtoList() {
-        String queryString = "peanut butter";
-        List<ProductDto> productList = datakickService.getProductDtoListByQuery(queryString);
-
-        assertNotNull(productList);
-        assertFalse(productList.isEmpty());
-        productList.forEach(p -> System.out.println(p.getName()));
-    }
-
-    @Test
-    public void whenGetProductList_thenReturnPopulatedProductList() {
-        List<DKProduct> DKProductList = datakickService.getProductList();
-
-        assertNotNull(DKProductList);
-        assertFalse(DKProductList.isEmpty());
-    }
+//    @Autowired
+//    DatakickService datakickService;
+//
+//    @Test
+//    public void whenGetProductDtoList_thenReturnPopulatedDtoList() {
+//        List<ProductDto> productList = datakickService.getProductDtoList();
+//
+//        assertNotNull(productList);
+//        assertFalse(productList.isEmpty());
+//
+//        productList.forEach(p -> System.out.println(p.getName()));
+//    }
+//
+//    @Test
+//    public void whenSearchBySingleWord_thenReturnPopulatedDtoList() {
+//        String queryString = "peanut";
+//        List<ProductDto> productList = datakickService.getProductDtoListByQuery(queryString);
+//
+//        assertNotNull(productList);
+//        assertFalse(productList.isEmpty());
+//    }
+//
+//    @Test
+//    public void whenSearchByMultipleWords_thenReturnPopulatedDtoList() {
+//        String queryString = "peanut butter";
+//        List<ProductDto> productList = datakickService.getProductDtoListByQuery(queryString);
+//
+//        assertNotNull(productList);
+//        assertFalse(productList.isEmpty());
+//        productList.forEach(p -> System.out.println(p.getName()));
+//    }
+//
+//    @Test
+//    public void whenGetProductList_thenReturnPopulatedProductList() {
+//        List<DKProduct> DKProductList = datakickService.getProductList();
+//
+//        assertNotNull(DKProductList);
+//        assertFalse(DKProductList.isEmpty());
+//    }
 }
