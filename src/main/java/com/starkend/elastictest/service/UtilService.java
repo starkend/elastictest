@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class UtilService {
 
 //    private ProductService productService;
-    private DatakickService datakickService;
+//    private DatakickService datakickService;
 
 //    public UtilService(ProductService productService, DatakickService datakickService) {
 //        this.productService = productService;
