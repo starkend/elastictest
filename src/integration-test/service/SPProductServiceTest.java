@@ -169,5 +169,16 @@ public class SPProductServiceTest {
         assertFalse(ingredients.isEmpty());
         System.out.println(ingredients);
     }
+
+    @Test
+    public void whenGetRecipeEquipmentById_thenSucceed() {
+        final String ID = "1003464";
+
+        RecipeEquipment equipment = spProductService.getRecipeEquipmentById(ID);
+
+        assertNotNull(equipment);
+
+        System.out.println(equipment);
+    }
 }
 

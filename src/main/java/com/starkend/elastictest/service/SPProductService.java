@@ -154,6 +154,32 @@ public class SPProductService {
         return processAutocompleteIngredientResponse(response);
     }
 
+    public RecipeEquipment getRecipeEquipmentById(String id) {
+        String url = BASE_URL + "/recipes/" + id + "/equipmentWidget.json?" + API_URL_COMPONENT;
+        System.out.println(url);
+        HttpEntity<String> response = getStringResponse(url);
+
+        return processRecipeEquipmentResponse(response);
+    }
+
+
+    private RecipeEquipment processRecipeEquipmentResponse(HttpEntity<String> response) {
+        RecipeEquipment equipment;
+
+        if (response != null) {
+            try {
+                equipment = objectMapper.readValue(response.getBody(), RecipeEquipment.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return equipment;
+    }
+
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
