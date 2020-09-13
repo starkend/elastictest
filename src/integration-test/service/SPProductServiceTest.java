@@ -177,7 +177,6 @@ public class SPProductServiceTest {
         RecipeEquipment equipment = spProductService.getRecipeEquipmentById(ID);
 
         assertNotNull(equipment);
-
         System.out.println(equipment);
     }
 }

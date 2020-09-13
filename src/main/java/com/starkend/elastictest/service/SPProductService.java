@@ -162,24 +162,6 @@ public class SPProductService {
         return processRecipeEquipmentResponse(response);
     }
 
-
-    private RecipeEquipment processRecipeEquipmentResponse(HttpEntity<String> response) {
-        RecipeEquipment equipment;
-
-        if (response != null) {
-            try {
-                equipment = objectMapper.readValue(response.getBody(), RecipeEquipment.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-
-        return equipment;
-    }
-
     private SearchProducts processSearchProductsResponse(HttpEntity<String> response) {
         SearchProducts searchProducts;
 
@@ -372,6 +354,23 @@ public class SPProductService {
         return ingredients;
     }
 
+    private RecipeEquipment processRecipeEquipmentResponse(HttpEntity<String> response) {
+        RecipeEquipment equipment;
+
+        if (response != null) {
+            try {
+                equipment = objectMapper.readValue(response.getBody(), RecipeEquipment.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return equipment;
+    }
+
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -387,8 +386,6 @@ public class SPProductService {
                 entity,
                 String.class);
     }
-
-
 }
 
 
