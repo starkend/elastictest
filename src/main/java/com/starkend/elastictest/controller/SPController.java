@@ -95,4 +95,10 @@ public class SPController {
     public ResponseEntity<List<Ingredient>> getAutocompleteIngredientSearch(@RequestParam String queryString, @RequestParam String number) {
         return new ResponseEntity<>(spProductService.getAutocompleteIngredientSearch(queryString, Integer.valueOf(number)), HttpStatus.OK);
     }
+
+    @GetMapping("/recipeEquipmentById")
+    public ResponseEntity<RecipeEquipment> getRecipeEquipmentById(@RequestParam String id) {
+        return new ResponseEntity<>(spProductService.getRecipeEquipmentById(id), HttpStatus.OK);
+    }
+
 }
