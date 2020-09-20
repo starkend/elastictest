@@ -12,8 +12,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public boolean deleteById(String id) {
-        return productRepository.deleteById(id);
-    }
+//    public boolean deleteById(String id) {
+//        return productRepository.deleteById(id);
+//    }
 
 }
