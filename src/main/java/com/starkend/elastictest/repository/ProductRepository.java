@@ -30,19 +30,19 @@ import java.util.*;
 @Repository
 public class ProductRepository {
 
-    private static final int MAX_RESULT_SIZE = 100;
-    private static Logger LOG = LoggerFactory.getLogger(ProductRepository.class);
+//    private static final int MAX_RESULT_SIZE = 100;
+//    private static Logger LOG = LoggerFactory.getLogger(ProductRepository.class);
+//
+//    private final String INDEX = "productindex";
+//    private final String TYPE = "products";
+//
+//    private ObjectMapper objectMapper;
+//    private RestHighLevelClient restHighLevelClient;
 
-    private final String INDEX = "productindex";
-    private final String TYPE = "products";
-
-    private ObjectMapper objectMapper;
-    private RestHighLevelClient restHighLevelClient;
-
-    public ProductRepository(ObjectMapper objectMapper, RestHighLevelClient restHighLevelClient) {
-        this.objectMapper = objectMapper;
-        this.restHighLevelClient = restHighLevelClient;
-    }
+//    public ProductRepository(ObjectMapper objectMapper, RestHighLevelClient restHighLevelClient) {
+//        this.objectMapper = objectMapper;
+//        this.restHighLevelClient = restHighLevelClient;
+//    }
 
 //    public DKProduct insertProduct(DKProduct DKProduct) {
 //        if (DKProduct.getId() == null) {
@@ -96,18 +96,18 @@ public class ProductRepository {
 //    }
 
 
-    public boolean deleteById(String id) {
-        DeleteRequest deleteRequest = new DeleteRequest(INDEX, id);
-
-        DeleteResponse deleteResponse = null;
-        try {
-            deleteResponse = restHighLevelClient.delete(deleteRequest, RequestOptions.DEFAULT);
-        } catch (IOException e) {
-            LOG.error(e.getLocalizedMessage());
-        }
-
-        return deleteResponse.getResult().equals(DocWriteResponse.Result.DELETED);
-    }
+//    public boolean deleteById(String id) {
+//        DeleteRequest deleteRequest = new DeleteRequest(INDEX, id);
+//
+//        DeleteResponse deleteResponse = null;
+//        try {
+//            deleteResponse = restHighLevelClient.delete(deleteRequest, RequestOptions.DEFAULT);
+//        } catch (IOException e) {
+//            LOG.error(e.getLocalizedMessage());
+//        }
+//
+//        return deleteResponse.getResult().equals(DocWriteResponse.Result.DELETED);
+//    }
 
 //    public DKProduct findById(String id) {
 //        GetRequest getRequest = new GetRequest(INDEX, id);
@@ -171,11 +171,11 @@ public class ProductRepository {
 //        return didAllSucceed;
 //    }
 
-    private SearchSourceBuilder getSearchSourceBuilder() {
-        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        searchSourceBuilder.size(MAX_RESULT_SIZE);
-        return searchSourceBuilder;
-    }
+//    private SearchSourceBuilder getSearchSourceBuilder() {
+//        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+//        searchSourceBuilder.size(MAX_RESULT_SIZE);
+//        return searchSourceBuilder;
+//    }
 
 //    private List<DKProduct> processSearchResponse(SearchResponse searchResponse) {
 //        SearchHits hits = searchResponse.getHits();
