@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductService {
 
-    private final ProductRepository productRepository;
-
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+//    private final ProductRepository productRepository;
+//
+//    public ProductService(ProductRepository productRepository) {
+//        this.productRepository = productRepository;
+//    }
 
 //    public boolean deleteById(String id) {
 //        return productRepository.deleteById(id);
