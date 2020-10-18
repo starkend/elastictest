@@ -23,4 +23,4 @@ info:
   app:
     name: Elastictest App
     version: 0.0.1
-    description: Spring Boot app using Elasticsearch Rest High Level Client from version 7.3.2
+    description: Spring Boot app using Elasticsearch Rest High Level Client from version 7.6.2
